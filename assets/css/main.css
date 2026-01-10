@@ -3445,46 +3445,30 @@ section,
   }
 }
 
-/* === HERO BUTTON COLOR FIX (brand accent) === */
-.hero .btn-primary {
-  background-color: #4bb8fe !important;
+/* === HERO BUTTON HOVER EFFECTS (force) === */
+.hero .hero-actions a.btn {
+  transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease, border-color .18s ease, color .18s ease !important;
+  will-change: transform;
+}
+
+.hero .hero-actions a.btn:hover,
+.hero .hero-actions a.btn:focus,
+.hero .hero-actions a.btn:active {
+  transform: translate3d(0, -2px, 0) !important;
+  box-shadow: 0 10px 22px rgba(0,0,0,.22) !important;
+}
+
+/* Primary: slightly darker on hover (explicit color, not filter) */
+.hero .hero-actions a.btn.btn-primary:hover,
+.hero .hero-actions a.btn.btn-primary:focus,
+.hero .hero-actions a.btn.btn-primary:active {
+  background-color: #45a9ea !important; /* darkened from #4bb8fe */
+  border-color: #45a9ea !important;
+}
+
+/* Outline: keep transparent but highlight border a bit on hover */
+.hero .hero-actions a.btn.btn-outline:hover,
+.hero .hero-actions a.btn.btn-outline:focus,
+.hero .hero-actions a.btn.btn-outline:active {
   border-color: #4bb8fe !important;
-  color: #ffffff !important;
-}
-
-.hero .btn-primary:hover,
-.hero .btn-primary:focus {
-  background-color: #4bb8fe !important;
-  border-color: #4bb8fe !important;
-  color: #ffffff !important;
-}
-
-/* Outline button */
-.hero .btn-outline {
-  color: #4bb8fe !important;
-  border-color: #4bb8fe !important;
-  background-color: transparent !important;
-}
-
-.hero .btn-outline:hover,
-.hero .btn-outline:focus {
-  background-color: #4bb8fe !important;
-  border-color: #4bb8fe !important;
-  color: #ffffff !important;
-}
-/* === HERO BUTTON HOVER EFFECTS (darken + lift) === */
-.hero .hero-actions .btn {
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease !important;
-}
-
-.hero .hero-actions .btn:hover,
-.hero .hero-actions .btn:focus {
-  transform: translateY(-2px) !important;
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18) !important;
-}
-
-/* Primary button: slightly darker on hover */
-.hero .hero-actions .btn-primary:hover,
-.hero .hero-actions .btn-primary:focus {
-  filter: brightness(0.92) !important;
 }
