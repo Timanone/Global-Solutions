@@ -1200,6 +1200,12 @@ section,
   pointer-events: auto;
 }
 
+@media (min-width: 1200px) {
+  .hero .scroll-indicator {
+    transform: translateX(-55%);
+  }
+}
+
 /* === FIX: force scroll indicator to bottom of HERO section === */
 
 /* Make HERO the positioning context */
