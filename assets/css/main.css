@@ -3445,41 +3445,30 @@ section,
   }
 }
 
-/*--------------------------------------------------------------
-# Starter Section Section
---------------------------------------------------------------*/
-.starter-section {
-  /* Add your styles here */
+/* === HERO BUTTON COLOR FIX (brand accent) === */
+.hero .btn-primary {
+  background-color: #4bb8fe !important;
+  border-color: #4bb8fe !important;
+  color: #ffffff !important;
 }
-/* === HERO BUTTONS: FORCE ORIGINAL COLORS === */
 
-/* Primary button */
-.hero .btn-primary,
-.hero .btn-primary:visited,
-.hero .btn-primary:focus,
-.hero .btn-primary:active {
-  background-color: var(--accent-color);
-  border-color: var(--accent-color);
-  color: #fff;
+.hero .btn-primary:hover,
+.hero .btn-primary:focus {
+  background-color: #4bb8fe !important;
+  border-color: #4bb8fe !important;
+  color: #ffffff !important;
 }
 
 /* Outline button */
-.hero .btn-outline-primary,
-.hero .btn-outline-primary:visited,
-.hero .btn-outline-primary:focus,
-.hero .btn-outline-primary:active {
-  background-color: transparent;
-  border-color: var(--accent-color);
-  color: var(--accent-color);
+.hero .btn-outline {
+  color: #4bb8fe !important;
+  border-color: #4bb8fe !important;
+  background-color: transparent !important;
 }
 
-/* Hover states (optional, but recommended) */
-.hero .btn-primary:hover {
-  background-color: var(--accent-color);
-  color: #fff;
-}
-
-.hero .btn-outline-primary:hover {
-  background-color: var(--accent-color);
-  color: #fff;
+.hero .btn-outline:hover,
+.hero .btn-outline:focus {
+  background-color: #4bb8fe !important;
+  border-color: #4bb8fe !important;
+  color: #ffffff !important;
 }
