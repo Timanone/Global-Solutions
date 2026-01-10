@@ -1200,6 +1200,33 @@ section,
   pointer-events: auto;
 }
 
+/* === FIX: force scroll indicator to bottom of HERO section === */
+
+/* Make HERO the positioning context */
+#hero {
+  position: relative;
+}
+
+/* Ensure scroll indicator is positioned from full hero height */
+#hero .scroll-indicator {
+  bottom: 24px;
+  z-index: 5;
+}
+
+/* Prevent inner containers from stealing positioning context */
+#hero .container,
+#hero .container-fluid,
+#hero .row {
+  position: static !important;
+}
+
+/* Mobile adjustment */
+@media (max-width: 768px) {
+  #hero .scroll-indicator {
+    bottom: 14px;
+  }
+}
+
 .hero .scroll-indicator .scroll-text {
   font-size: 12px;
   font-weight: 600;
