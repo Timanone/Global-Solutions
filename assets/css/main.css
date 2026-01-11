@@ -3468,12 +3468,12 @@ section,
 .hero .hero-actions .btn-primary {
   background-color: #4bb8fe;
   border-color: #4bb8fe;
-  color: #4bb8fe;
+  color: #ffffff;
 }
 
 .hero .hero-actions .btn-primary:hover {
-  background-color: #4bb8fe; /* чуть темнее */
-  border-color: #4bb8fe;
+  background-color: #3aaefc; /* чуть темнее */
+  border-color: #3aaefc;
 }
 
 /* ================= OUTLINE (PDF) ================= */
@@ -3485,5 +3485,5 @@ section,
 
 .hero .hero-actions .btn-outline:hover {
   background-color: #4bb8fe;
-  color: #4bb8fe;
+  color: #ffffff;
 }
