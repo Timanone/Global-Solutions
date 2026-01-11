@@ -3468,7 +3468,7 @@ section,
 .hero .hero-actions .btn-primary {
   background-color: #4bb8fe;
   border-color: #4bb8fe;
-  color: #ffffff;
+  color: #4bb8fe;
 }
 
 .hero .hero-actions .btn-primary:hover {
@@ -3485,5 +3485,5 @@ section,
 
 .hero .hero-actions .btn-outline:hover {
   background-color: #4bb8fe;
-  color: #ffffff;
+  color: #4bb8fe;
 }
