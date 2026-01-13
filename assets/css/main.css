@@ -208,36 +208,39 @@ h6 {
 /* ================= HEADER / LOGO ================= */
 
 .header .branding {
-  min-height: 60px;
-  padding: 10px 0;
+  min-height: 92px;     /* было 60 — под full logo нужно выше */
+  padding: 14px 0;      /* было 10 */
 }
 
 .header .logo {
   line-height: 1;
   display: flex;
   align-items: center;
-  position: relative; /* нужно для абсолютного скрытого logo-icon */
+  position: relative;   /* нужно для абсолютного скрытого logo-icon */
 }
 
-/* Общие правила только без max-height (чтобы не убить разные размеры) */
+/* Общие правила */
 .header .logo img,
 .header .logo .logo-img {
   width: auto;
   display: block;
 }
 
-/* FULL logo — большой по умолчанию */
+/* FULL logo — крупный по умолчанию */
 .header .logo .logo-full {
-  max-height: 56px; /* можешь поднять до 64 если хочется крупнее */
+  height: 64px;         /* ключ: делаем реально крупным */
+  max-height: none;     /* важно: чтобы max-height не зажимал */
   margin-right: 0;
   opacity: 1;
   visibility: visible;
-  transition: opacity .25s ease, transform .25s ease;
+  transform: scale(1);
+  transition: opacity .25s ease, transform .25s ease, visibility .25s ease;
 }
 
-/* ICON — скрыт по умолчанию */
+/* ICON — скрыт по умолчанию (лежит поверх, в той же точке) */
 .header .logo .logo-icon {
-  max-height: 36px;
+  height: 44px;
+  max-height: none;
   margin-right: 0;
   opacity: 0;
   visibility: hidden;
@@ -256,17 +259,17 @@ h6 {
   color: var(--heading-color);
 }
 
-/* Mobile — аккуратно уменьшаем */
-@media (max-width: 768px) {
-  .header .logo .logo-full { max-height: 44px; }
-  .header .logo .logo-icon { max-height: 32px; }
-}
-
-/* ====== SCROLL STATE (класс ставится на body: note "body.scrolled") ====== */
+/* ====== SCROLL STATE (класс ставится на body: .scrolled) ====== */
 
 .scrolled .header {
   box-shadow: 0px 0 18px rgba(0, 0, 0, 0.1);
   --background-color: rgba(0, 0, 0, 0.9);
+}
+
+/* Хедер становится ниже при скролле */
+.scrolled .header .branding {
+  min-height: 64px;
+  padding: 8px 0;
 }
 
 .scrolled .header .topbar {
@@ -285,8 +288,24 @@ h6 {
 .scrolled .header .logo .logo-icon {
   opacity: 1;
   visibility: visible;
-  position: relative;
-  transform: translateY(0) scale(1);
+  /* оставляем absolute — не меняем позиционирование */
+  transform: translateY(-50%) scale(1);
+}
+
+/* Mobile — аккуратно уменьшаем, но остаётся читаемо */
+@media (max-width: 768px) {
+  .header .branding {
+    min-height: 84px;
+    padding: 12px 0;
+  }
+
+  .header .logo .logo-full { height: 56px; }
+  .header .logo .logo-icon { height: 38px; }
+
+  .scrolled .header .branding {
+    min-height: 60px;
+    padding: 8px 0;
+  }
 }
 
 /* Остальное — без изменений */
