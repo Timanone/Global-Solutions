@@ -3445,79 +3445,19 @@ section,
   }
 }
 
-/* ==================================================
-   HERO BUTTONS — FINAL & CLEAN
-   ================================================== */
-
-/* Общая анимация для ОБЕИХ кнопок */
+/* === HERO BUTTON HOVER EFFECTS (darken + lift) === */
 .hero .hero-actions .btn {
-  transition:
-    transform 0.18s ease,
-    box-shadow 0.18s ease,
-    background-color 0.18s ease,
-    border-color 0.18s ease,
-    color 0.18s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease !important;
 }
 
-.hero .hero-actions .btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
+.hero .hero-actions .btn:hover,
+.hero .hero-actions .btn:focus {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18) !important;
 }
 
-/* ================= PRIMARY ================= */
-.hero .hero-actions .btn-primary {
-  background-color: #4bb8fe;
-  border-color: #4bb8fe;
-  color: #ffffff;
-}
-
-.hero .hero-actions .btn-primary:hover {
-  background-color: #3aaefc; /* чуть темнее */
-  border-color: #3aaefc;
-  color: #ffffff;
-}
-
-/* ================= OUTLINE (PDF) ================= */
-.hero .hero-actions .btn-outline {
-  background-color: transparent;
-  border: #4bb8fe;
-  color: #4bb8fe;
-}
-
-/* ВАЖНО: PDF-кнопка НЕ должна заливаться на hover */
-.hero .hero-actions .btn-outline:hover {
-  background-color: transparent;     /* оставляем прозрачной */
-  border-color: #3aaefc;             /* чуть темнее рамка */
-  color: #3aaefc;                    /* чуть темнее текст */
-}
-/* === HERO BUTTONS: hard fix for exact color === */
-.hero .hero-actions a.btn.btn-outline {
-  background: transparent !important;
-  border: 2px solid #4bb8fe !important;
-  color: #4bb8fe !important;
-}
-
-.hero .hero-actions a.btn.btn-outline:hover,
-.hero .hero-actions a.btn.btn-outline:focus,
-.hero .hero-actions a.btn.btn-outline:active {
-  background: transparent !important;     /* не заливаем */
-  border-color: #3aaefc !important;       /* чуть темнее на hover (или оставь #4bb8fe) */
-  color: #3aaefc !important;              /* чуть темнее на hover */
-  transform: translateY(-2px);
-  box-shadow: 0 10px 22px rgba(0,0,0,0.22);
-}
-
-.hero .hero-actions a.btn.btn-primary {
-  background-color: #4bb8fe !important;
-  border-color: #4bb8fe !important;
-  color: #fff !important;
-}
-
-.hero .hero-actions a.btn.btn-primary:hover,
-.hero .hero-actions a.btn.btn-primary:focus,
-.hero .hero-actions a.btn.btn-primary:active {
-  background-color: #3aaefc !important;
-  border-color: #3aaefc !important;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 22px rgba(0,0,0,0.22);
+/* Primary button: slightly darker on hover */
+.hero .hero-actions .btn-primary:hover,
+.hero .hero-actions .btn-primary:focus {
+  filter: brightness(0.92) !important;
 }
