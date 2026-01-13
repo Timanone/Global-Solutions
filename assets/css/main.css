@@ -205,6 +205,8 @@ h6 {
   color: var(--contrast-color);
 }
 
+/* ================= HEADER / LOGO ================= */
+
 .header .branding {
   min-height: 60px;
   padding: 10px 0;
@@ -212,24 +214,33 @@ h6 {
 
 .header .logo {
   line-height: 1;
+  display: flex;
+  align-items: center;
 }
 
+/* Единственное правило для логотипа */
+.header .logo img,
 .header .logo .logo-img {
-  max-height: 48px;
+  max-height: 48px;   /* основной размер */
   width: auto;
   display: block;
-}
-
-.header .logo img {
-  max-height: 36px;
   margin-right: 8px;
 }
 
+/* Если используется текст рядом с логотипом */
 .header .logo h1 {
   font-size: 30px;
   margin: 0;
   font-weight: 700;
   color: var(--heading-color);
+}
+
+/* Mobile — аккуратно уменьшаем */
+@media (max-width: 768px) {
+  .header .logo img,
+  .header .logo .logo-img {
+    max-height: 40px;
+  }
 }
 
 .scrolled .header {
