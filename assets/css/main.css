@@ -235,7 +235,7 @@ h6 {
 
 /* FULL LOGO — БОЛЬШОЙ В НАЧАЛЕ */
 .header .logo .logo-full {
-  max-height: 90px;           /* ← КРУПНЫЙ логотип */
+  max-height: 100px;           /* ← КРУПНЫЙ логотип */
   opacity: 1;
   visibility: visible;
   transition: opacity .25s ease, transform .25s ease;
