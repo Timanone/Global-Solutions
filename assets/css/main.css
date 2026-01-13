@@ -3474,6 +3474,7 @@ section,
 .hero .hero-actions .btn-primary:hover {
   background-color: #3aaefc; /* чуть темнее */
   border-color: #3aaefc;
+  color: #ffffff;
 }
 
 /* ================= OUTLINE (PDF) ================= */
@@ -3483,7 +3484,9 @@ section,
   color: #4bb8fe;
 }
 
+/* ВАЖНО: PDF-кнопка НЕ должна заливаться на hover */
 .hero .hero-actions .btn-outline:hover {
-  background-color: #4bb8fe;
-  color: #ffffff;
+  background-color: transparent;     /* оставляем прозрачной */
+  border-color: #3aaefc;             /* чуть темнее рамка */
+  color: #3aaefc;                    /* чуть темнее текст */
 }
