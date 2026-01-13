@@ -235,7 +235,7 @@ h6 {
 
 /* FULL LOGO — БОЛЬШОЙ В НАЧАЛЕ */
 .header .logo .logo-full {
-  max-height: 72px;           /* ← КРУПНЫЙ логотип */
+  max-height: 90px;           /* ← КРУПНЫЙ логотип */
   opacity: 1;
   visibility: visible;
   transition: opacity .25s ease, transform .25s ease;
@@ -243,7 +243,7 @@ h6 {
 
 /* ICON — скрыт */
 .header .logo .logo-icon {
-  max-height: 38px;
+  max-height: 52px;
   opacity: 0;
   visibility: hidden;
   position: absolute;
