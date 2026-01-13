@@ -3445,19 +3445,30 @@ section,
   }
 }
 
-/* === HERO BUTTON HOVER EFFECTS (darken + lift) === */
-.hero .hero-actions .btn {
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease !important;
+/* === HERO BUTTON COLOR FIX (brand accent) === */
+.hero .btn-primary {
+  background-color: #4bb8fe !important;
+  border-color: #4bb8fe !important;
+  color: #ffffff !important;
 }
 
-.hero .hero-actions .btn:hover,
-.hero .hero-actions .btn:focus {
-  transform: translateY(-2px) !important;
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18) !important;
+.hero .btn-primary:hover,
+.hero .btn-primary:focus {
+  background-color: #4bb8fe !important;
+  border-color: #4bb8fe !important;
+  color: #ffffff !important;
 }
 
-/* Primary button: slightly darker on hover */
-.hero .hero-actions .btn-primary:hover,
-.hero .hero-actions .btn-primary:focus {
-  filter: brightness(0.92) !important;
+/* Outline button */
+.hero .btn-outline {
+  color: #4bb8fe !important;
+  border-color: #4bb8fe !important;
+  background-color: transparent !important;
+}
+
+.hero .btn-outline:hover,
+.hero .btn-outline:focus {
+  background-color: #4bb8fe !important;
+  border-color: #4bb8fe !important;
+  color: #ffffff !important;
 }
