@@ -205,52 +205,50 @@ h6 {
   color: var(--contrast-color);
 }
 
-/* ================= HEADER / LOGO ================= */
+/* ==================================================
+   HEADER LOGO — FULL → ICON ON SCROLL
+   ================================================== */
 
-/* Высота хедера в обычном состоянии (с full logo) */
-.header .branding {
-  min-height: 96px;          /* было 60 — делаем выше под широкий логотип */
-  padding: 14px 0;
+/* Базовый header */
+.header {
+  transition: all 0.3s ease;
 }
 
-.header .logo {
-  line-height: 1;
-  display: flex;
-  align-items: center;
-}
-
-/* Общие правила для обоих изображений */
-.header .logo img {
-  width: auto;
+/* Логотипы */
+.header .logo-img {
+  transition: all 0.3s ease;
   display: block;
 }
 
-/* FULL logo (с текстом) — показываем по умолчанию */
-.header .logo .logo-full {
-  height: 64px;              /* ключ: делаем реально крупным */
-  max-height: none;
+/* FULL logo — большой по умолчанию */
+.header .logo-full {
+  max-height: 56px;
 }
 
-/* ICON logo (шар) — скрыт по умолчанию */
-.header .logo .logo-icon {
-  display: none;
-  height: 44px;
-  max-height: none;
+/* ICON — скрыт по умолчанию */
+.header .logo-icon {
+  max-height: 36px;
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
 }
 
-/* SCROLLED STATE: уменьшаем хедер и переключаем на иконку */
-.scrolled .header .branding {
-  min-height: 64px;
-  padding: 8px 0;
+/* ===== SCROLLED STATE ===== */
+.header.scrolled {
+  padding: 6px 0;
 }
 
-.scrolled .header .logo .logo-full {
-  display: none;
+.header.scrolled .logo-full {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.9);
 }
 
-.scrolled .header .logo .logo-icon {
-  display: block;
-  height: 40px;
+.header.scrolled .logo-icon {
+  opacity: 1;
+  visibility: visible;
+  position: relative;
+  transform: scale(1);
 }
 
 /* Тень и фон как у тебя */
