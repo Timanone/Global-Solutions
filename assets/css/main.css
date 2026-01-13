@@ -3490,3 +3490,34 @@ section,
   border-color: #3aaefc;             /* чуть темнее рамка */
   color: #3aaefc;                    /* чуть темнее текст */
 }
+/* === HERO BUTTONS: hard fix for exact color === */
+.hero .hero-actions a.btn.btn-outline {
+  background: transparent !important;
+  border: 2px solid #4bb8fe !important;
+  color: #4bb8fe !important;
+}
+
+.hero .hero-actions a.btn.btn-outline:hover,
+.hero .hero-actions a.btn.btn-outline:focus,
+.hero .hero-actions a.btn.btn-outline:active {
+  background: transparent !important;     /* не заливаем */
+  border-color: #3aaefc !important;       /* чуть темнее на hover (или оставь #4bb8fe) */
+  color: #3aaefc !important;              /* чуть темнее на hover */
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.22);
+}
+
+.hero .hero-actions a.btn.btn-primary {
+  background-color: #4bb8fe !important;
+  border-color: #4bb8fe !important;
+  color: #fff !important;
+}
+
+.hero .hero-actions a.btn.btn-primary:hover,
+.hero .hero-actions a.btn.btn-primary:focus,
+.hero .hero-actions a.btn.btn-primary:active {
+  background-color: #3aaefc !important;
+  border-color: #3aaefc !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.22);
+}
