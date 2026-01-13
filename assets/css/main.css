@@ -216,15 +216,36 @@ h6 {
   line-height: 1;
   display: flex;
   align-items: center;
+  position: relative; /* нужно для абсолютного скрытого logo-icon */
 }
 
-/* Единственное правило для логотипа */
+/* Общие правила только без max-height (чтобы не убить разные размеры) */
 .header .logo img,
 .header .logo .logo-img {
-  max-height: 48px;   /* основной размер */
   width: auto;
   display: block;
-  margin-right: 8px;
+}
+
+/* FULL logo — большой по умолчанию */
+.header .logo .logo-full {
+  max-height: 56px; /* можешь поднять до 64 если хочется крупнее */
+  margin-right: 0;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity .25s ease, transform .25s ease;
+}
+
+/* ICON — скрыт по умолчанию */
+.header .logo .logo-icon {
+  max-height: 36px;
+  margin-right: 0;
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) scale(.96);
+  transition: opacity .25s ease, transform .25s ease, visibility .25s ease;
 }
 
 /* Если используется текст рядом с логотипом */
@@ -237,14 +258,15 @@ h6 {
 
 /* Mobile — аккуратно уменьшаем */
 @media (max-width: 768px) {
-  .header .logo img,
-  .header .logo .logo-img {
-    max-height: 40px;
-  }
+  .header .logo .logo-full { max-height: 44px; }
+  .header .logo .logo-icon { max-height: 32px; }
 }
+
+/* ====== SCROLL STATE (класс ставится на body: note "body.scrolled") ====== */
 
 .scrolled .header {
   box-shadow: 0px 0 18px rgba(0, 0, 0, 0.1);
+  --background-color: rgba(0, 0, 0, 0.9);
 }
 
 .scrolled .header .topbar {
@@ -253,6 +275,21 @@ h6 {
   overflow: hidden;
 }
 
+/* Переключение логотипов при скролле */
+.scrolled .header .logo .logo-full {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(.96);
+}
+
+.scrolled .header .logo .logo-icon {
+  opacity: 1;
+  visibility: visible;
+  position: relative;
+  transform: translateY(0) scale(1);
+}
+
+/* Остальное — без изменений */
 .hero-note {
   margin-top: 10px;
   font-size: 13px;
