@@ -3444,9 +3444,15 @@ section,
     grid-template-columns: 1fr;
   }
 }
-/* === HERO BUTTON HOVER EFFECTS (force) === */
+
+/* ==================================================
+   HERO BUTTONS — FINAL (colors locked)
+   Base: #4bb8fe | Hover: #1e9de1
+   ================================================== */
+
 .hero .hero-actions a.btn {
-  transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease, border-color .18s ease, color .18s ease !important;
+  transition: transform 0.18s ease, box-shadow 0.18s ease,
+              background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease !important;
   will-change: transform;
 }
 
@@ -3454,20 +3460,35 @@ section,
 .hero .hero-actions a.btn:focus,
 .hero .hero-actions a.btn:active {
   transform: translate3d(0, -2px, 0) !important;
-  box-shadow: 0 10px 22px rgba(0,0,0,.22) !important;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22) !important;
 }
 
-/* Primary: slightly darker on hover (explicit color, not filter) */
+/* PRIMARY (Request a Quote) */
+.hero .hero-actions a.btn.btn-primary {
+  background-color: #4bb8fe !important;
+  border-color: #4bb8fe !important;
+  color: #ffffff !important;
+}
+
 .hero .hero-actions a.btn.btn-primary:hover,
 .hero .hero-actions a.btn.btn-primary:focus,
 .hero .hero-actions a.btn.btn-primary:active {
-  background-color: #45a9ea !important; /* darkened from #4bb8fe */
-  border-color: #45a9ea !important;
+  background-color: #1e9de1 !important;
+  border-color: #1e9de1 !important;
+  color: #ffffff !important;
 }
 
-/* Outline: keep transparent but highlight border a bit on hover */
-.hero .hero-actions a.btn.btn-outline:hover,
-.hero .hero-actions a.btn.btn-outline:focus,
-.hero .hero-actions a.btn.btn-outline:active {
-  border-color: #4bb8fe !important;
+/* OUTLINE PRIMARY (Request Portfolio PDF) */
+.hero .hero-actions a.btn.btn-outline-primary {
+  background-color: transparent !important;
+  border: 2px solid #4bb8fe !important;
+  color: #4bb8fe !important;
+}
+
+.hero .hero-actions a.btn.btn-outline-primary:hover,
+.hero .hero-actions a.btn.btn-outline-primary:focus,
+.hero .hero-actions a.btn.btn-outline-primary:active {
+  background-color: #1e9de1 !important;
+  border-color: #1e9de1 !important;
+  color: #ffffff !important;
 }
