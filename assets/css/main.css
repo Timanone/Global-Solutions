@@ -3552,3 +3552,22 @@ section,
   border-color: #1e9de1 !important;
   color: #ffffff !important;
 }
+/* ================= FOOTER LOGO ================= */
+
+.footer-logo {
+  display: inline-flex;
+  align-items: center;
+}
+
+.footer-logo-img {
+  max-height: 72px;   /* можно 64 / 72 / 80 — смотри визуально */
+  width: auto;
+  display: block;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .footer-logo-img {
+    max-height: 56px;
+  }
+}
