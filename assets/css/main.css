@@ -1364,9 +1364,16 @@ section,
   transition: all 0.3s ease;
 }
 
+.about .about-content .feature-item {
+  position: relative;     /* чтобы z-index работал */
+  z-index: 1;
+  will-change: transform; /* плавнее и надёжнее */
+}
+
 .about .about-content .feature-item:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+  transform: translateY(-10px) !important;   /* важно: перебивает transform от AOS */
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12) !important;
+  z-index: 5;
 }
 
 .about .about-content .feature-item i {
