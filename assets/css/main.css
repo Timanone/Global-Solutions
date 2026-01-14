@@ -1365,8 +1365,8 @@ section,
 }
 
 .about .about-content .feature-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transform: translateY(-10px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
 }
 
 .about .about-content .feature-item i {
