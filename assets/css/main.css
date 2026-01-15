@@ -3684,31 +3684,52 @@ section,
   transform: translateY(-10px) !important;
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12) !important;
 }
-/* ===== Product cards image slot ===== */
-.products-list-2 .product-media {
-  height: 190px;              /* можно 170–220, подберём */
+/* ==================================================
+   PRODUCTS LIST 2 — CARD IMAGES + HOVER (clean)
+   ================================================== */
+
+/* Card hover like About (no color changes) */
+.products-list-2 .product-card {
+  position: relative;
+  z-index: 1;
+  will-change: transform;
+
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.products-list-2 .product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 22px 52px rgba(0, 0, 0, 0.16);
+  z-index: 5;
+}
+
+/* Fixed image frame so all photos look uniform */
+.products-list-2 .product-image {
+  height: 190px;            /* desktop frame height */
   border-radius: 14px;
   overflow: hidden;
   margin-bottom: 14px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
-.products-list-2 .product-media img {
+.products-list-2 .product-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
   display: block;
+
   transition: transform 0.18s ease;
 }
 
-.products-list-2 .YOUR-CARD-CLASS:hover .product-media img {
+/* subtle zoom on hover (optional but premium) */
+.products-list-2 .product-card:hover .product-image img {
   transform: scale(1.03);
 }
 
-/* mobile */
+/* Mobile */
 @media (max-width: 768px) {
-  .products-list-2 .product-media {
+  .products-list-2 .product-image {
     height: 160px;
   }
 }
