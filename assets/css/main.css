@@ -2329,7 +2329,6 @@ section,
 .stats .stats-card {
   background: var(--surface-color);
   border-radius: 10px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
   padding: 20px;
   display: flex;
   align-items: center;
@@ -2338,12 +2337,17 @@ section,
   z-index: 1;
   will-change: transform;
 
+  /* base — чуть легче, чтобы hover сильнее читался */
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.045);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+
   transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
 .stats .stats-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+  /* hover — заметно сильнее, чтобы было “как About” */
+  box-shadow: 0 22px 52px rgba(0, 0, 0, 0.16);
   z-index: 5;
 }
 
