@@ -3643,3 +3643,16 @@ section,
     max-height: 56px;
   }
 }
+/* ===== Services cards hover (match About) ===== */
+.services-3 .service-item{
+  position: relative;
+  z-index: 1;
+  will-change: transform;
+  transition: transform 0.18s ease, box-shadow 0.18s ease !important;
+}
+
+.services-3 .service-item:hover{
+  transform: translateY(-10px) !important;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12) !important;
+  z-index: 5;
+}
