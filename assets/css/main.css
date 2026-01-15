@@ -2342,8 +2342,9 @@ section,
 }
 
 .stats .stats-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transform: translateY(-10px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+  z-index: 5;
 }
 
 .stats .stats-card .stats-icon {
