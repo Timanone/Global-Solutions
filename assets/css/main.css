@@ -2163,6 +2163,20 @@ section,
     margin-bottom: 12px;
   }
 }
+/* ===== Products List 2: image frame (uniform cards) ===== */
+.products-list-2 .product-image{
+  height: 160px;            /* можешь сделать 180-200 если хочешь меньше обрезки */
+  overflow: hidden;
+  border-radius: 16px 16px 0 0;
+}
+
+.products-list-2 .product-image img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
 
 /*--------------------------------------------------------------
 # Features Section
