@@ -2120,8 +2120,8 @@ section,
 }
 
 .products-list-2 .products-cta:hover {
-  background-color: rgba(0, 0, 0, 0.85);
   transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
 }
 
 @media (max-width: 768px) {
