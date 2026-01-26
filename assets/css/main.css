@@ -3752,3 +3752,7 @@ section,
 #partners {
   background-color: rgba(177, 224, 254, 0.515) !important;
 }
+
+#partners .container {
+  background: transparent !important;
+}
