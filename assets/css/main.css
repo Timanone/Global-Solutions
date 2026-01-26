@@ -3747,3 +3747,8 @@ section,
     height: 160px;
   }
 }
+
+/* Partners: same background as Markets (Stats) */
+#partners {
+  background-color: rgba(177, 224, 254, 0.515) !important;
+}
