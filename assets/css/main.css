@@ -214,7 +214,7 @@ h6 {
 }
 
 .header .branding {
-  min-height: 92px;           /* ← ВАЖНО: больше высота в начале */
+  min-height: 92px;
   padding: 18px 0;
   display: flex;
   align-items: center;
@@ -227,35 +227,38 @@ h6 {
   position: relative;
 }
 
-/* Общие правила */
+/* Общие правила для img */
 .header .logo img {
   width: auto;
+  height: auto;
   display: block;
 }
 
-/* FULL LOGO — БОЛЬШОЙ В НАЧАЛЕ */
+/* FULL LOGO */
 .header .logo .logo-full {
-  max-height: 100px;           /* ← КРУПНЫЙ логотип */
+  height: 64px;                 /* <-- ВЫБЕРИ высоту сверху (влезает в 92px) */
+  width: auto;
   opacity: 1;
   visibility: visible;
-  transition: opacity .25s ease, transform .25s ease;
+  transition: opacity .25s ease, transform .25s ease, visibility .25s ease;
 }
 
-/* ICON — скрыт */
+/* ICON (оверлеем, чтобы не прыгало) */
 .header .logo .logo-icon {
-  max-height: 100px;
+  height: 64px;                 /* <-- ТО ЖЕ что у full сверху */
+  width: auto;
   opacity: 0;
   visibility: hidden;
   position: absolute;
   left: 0;
   top: 50%;
-  transform: translateY(-50%) scale(.95);
+  transform: translateY(-50%) scale(1);   /* scale лучше 1, чтобы не “плясало” */
   transition: opacity .25s ease, transform .25s ease, visibility .25s ease;
 }
 
 /* ===== SCROLLED STATE ===== */
 body.scrolled .header .branding {
-  min-height: 60px;           /* ← header СЖИМАЕТСЯ */
+  min-height: 60px;
   padding: 10px 0;
 }
 
@@ -263,15 +266,17 @@ body.scrolled .header .branding {
 body.scrolled .header .logo .logo-full {
   opacity: 0;
   visibility: hidden;
-  transform: scale(.95);
+  transform: scale(.98);
 }
 
 /* Показываем icon */
 body.scrolled .header .logo .logo-icon {
   opacity: 1;
   visibility: visible;
-  position: relative;
-  transform: translateY(0) scale(1);
+  /* оставляем absolute — меньше шансов на сдвиги */
+  transform: translateY(-50%) scale(1);
+  height: 44px;                 /* <-- ВЫБЕРИ высоту при скролле (влезает в 60px) */
+  width: auto;
 }
 
 /* Тень и фон */
@@ -288,31 +293,21 @@ body.scrolled .header {
   }
 
   .header .logo .logo-full {
-    max-height: 56px;
+    height: 48px;               /* <-- под мобильный top */
   }
 
   .header .logo .logo-icon {
-    max-height: 32px;
+    height: 48px;               /* <-- ТО ЖЕ что full на mobile top */
   }
 
   body.scrolled .header .branding {
     min-height: 56px;
     padding: 8px 0;
   }
-}
 
-/* Остальное — без изменений */
-.hero-note {
-  margin-top: 10px;
-  font-size: 13px;
-  color: color-mix(in srgb, var(--contrast-color), transparent 35%);
-  letter-spacing: 0.01em;
-}
-
-/* Global Header on Scroll
-------------------------------*/
-.scrolled .header {
-  --background-color: rgba(0, 0, 0, 0.9);
+  body.scrolled .header .logo .logo-icon {
+    height: 38px;               /* <-- под mobile scrolled */
+  }
 }
 
 /*--------------------------------------------------------------
