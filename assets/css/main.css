@@ -3775,33 +3775,21 @@ section,
   background: transparent !important;
 }
 
-/* ===== Footer Bottom Typography + Layout (REPLACE FULL BLOCK) ===== */
+/* ===== Footer Bottom Typography + Layout (STABLE with Bootstrap grid) ===== */
 
 .footer-bottom {
   padding-top: 18px;
   padding-bottom: 18px;
 }
 
-/* Контейнер нижней полосы (левая инфо + правые ссылки) */
-.footer-bottom .container .row {
-  display: flex;
-  align-items: center;
-}
-
-/* Сбрасываем "случайные" отступы параграфов внутри copyright */
+/* Сброс случайных отступов, если где-то остался <p> */
 .footer-bottom .copyright p {
   margin: 0;
 }
 
-/* ЛЕВАЯ ЧАСТЬ */
-.footer-bottom-left {
-  text-align: left;
-}
-
-/* ПРАВАЯ ЧАСТЬ */
-.footer-bottom-right {
-  text-align: right;
-}
+/* LEFT / RIGHT alignment */
+.footer-bottom-left { text-align: left; }
+.footer-bottom-right { text-align: right; }
 
 /* Типографика строк */
 .footer-main {
@@ -3816,14 +3804,14 @@ section,
   color: rgba(255, 255, 255, 0.65);
   font-size: 13px;
   line-height: 1.45;
-  margin-bottom: 14px; /* отделяем верхний блок от нижнего */
+  margin-bottom: 14px;
 }
 
 .footer-compliance {
   color: rgba(255, 255, 255, 0.6);
   font-size: 12.5px;
   line-height: 1.45;
-  margin-bottom: 4px; /* плотная группа с disclaimer */
+  margin-bottom: 4px;
 }
 
 .footer-disclaimer {
@@ -3833,11 +3821,11 @@ section,
   margin-bottom: 0;
 }
 
-/* LINKS (Privacy / Terms / Cookie) */
+/* LINKS */
 .footer-links {
   display: flex;
   justify-content: flex-end;
-  gap: 16px; /* вместо margin-left на каждом */
+  gap: 16px;
   flex-wrap: wrap;
 }
 
@@ -3856,14 +3844,13 @@ section,
 
 /* ===== MOBILE ===== */
 @media (max-width: 768px) {
-  .footer-bottom .container .row {
-    flex-direction: column;
-    gap: 10px;
-  }
-
   .footer-bottom-left,
   .footer-bottom-right {
     text-align: center;
+  }
+
+  .footer-bottom-right {
+    margin-top: 10px;
   }
 
   .footer-links {
@@ -3871,7 +3858,6 @@ section,
     gap: 12px;
   }
 
-  /* Чуть компактнее на мобильном */
   .footer-legal {
     margin-bottom: 10px;
   }
