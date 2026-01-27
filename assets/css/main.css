@@ -215,9 +215,9 @@ h6 {
 
 /* ===== QUICK CONTROL (EDIT ONLY THESE) ===== */
 :root{
-  --logo-h-desktop: 68px;          /* высота логотипа на десктопе (и full и icon одинаково) */
+  --logo-h-desktop: 80px;          /* высота логотипа на десктопе (и full и icon одинаково) */
   --logo-h-mobile: 56px;           /* высота логотипа на мобилке */
-  --branding-h-desktop: 92px;      /* высота шапки сверху */
+  --branding-h-desktop: 116px;      /* высота шапки сверху */
   --branding-h-scrolled: 92px;     /* высота шапки при скролле (должна быть >= logo-h) */
 }
 
