@@ -3840,6 +3840,26 @@ section,
   text-decoration: underline;
 }
 
+/* ===== Footer text spacing hierarchy ===== */
+
+/* Верхний корпоративный блок */
+.footer-main {
+  margin-bottom: 6px;
+}
+
+.footer-legal {
+  margin-bottom: 14px; /* ← ВАЖНО: увеличенный отступ вниз */
+}
+
+/* Compliance + disclaimer — плотная группа */
+.footer-compliance {
+  margin-bottom: 4px; /* ← минимальный отступ */
+}
+
+.footer-disclaimer {
+  margin-bottom: 0;
+}
+
 @media (max-width: 768px) {
   .footer-bottom-left,
   .footer-bottom-right {
