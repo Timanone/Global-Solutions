@@ -3775,64 +3775,78 @@ section,
   background: transparent !important;
 }
 
-/* ===== Footer Bottom Typography ===== */
+/* ===== Footer Bottom Typography + Layout (REPLACE FULL BLOCK) ===== */
 
 .footer-bottom {
   padding-top: 18px;
   padding-bottom: 18px;
 }
 
+/* Контейнер нижней полосы (левая инфо + правые ссылки) */
+.footer-bottom .container .row {
+  display: flex;
+  align-items: center;
+}
+
+/* Сбрасываем "случайные" отступы параграфов внутри copyright */
 .footer-bottom .copyright p {
-  margin: 4px 0;
-  line-height: 1.45;
+  margin: 0;
 }
 
-/* Главная строка */
-.footer-main {
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 14px;
-  font-weight: 500;
-}
-
-/* Юридическая идентификация */
-.footer-legal {
-  color: rgba(255, 255, 255, 0.65);
-  font-size: 13px;
-}
-
-/* Compliance disclaimer */
-.footer-compliance {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 12.5px;
-}
-
-/* B2B / availability */
-.footer-disclaimer {
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 12px;
-}
-
-/* ===== Footer Bottom Layout ===== */
-
+/* ЛЕВАЯ ЧАСТЬ */
 .footer-bottom-left {
   text-align: left;
 }
 
+/* ПРАВАЯ ЧАСТЬ */
 .footer-bottom-right {
   text-align: right;
 }
 
-/* Links */
+/* Типографика строк */
+.footer-main {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.45;
+  margin-bottom: 6px;
+}
+
+.footer-legal {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 13px;
+  line-height: 1.45;
+  margin-bottom: 14px; /* отделяем верхний блок от нижнего */
+}
+
+.footer-compliance {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 12.5px;
+  line-height: 1.45;
+  margin-bottom: 4px; /* плотная группа с disclaimer */
+}
+
+.footer-disclaimer {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 12px;
+  line-height: 1.45;
+  margin-bottom: 0;
+}
+
+/* LINKS (Privacy / Terms / Cookie) */
+.footer-links {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px; /* вместо margin-left на каждом */
+  flex-wrap: wrap;
+}
+
 .footer-links a {
-  margin-left: 16px;
   font-size: 12.5px;
   color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
   transition: color 0.2s ease;
-}
-
-.footer-links a:first-child {
-  margin-left: 0;
+  white-space: nowrap;
 }
 
 .footer-links a:hover {
@@ -3840,37 +3854,29 @@ section,
   text-decoration: underline;
 }
 
-/* ===== Footer text spacing hierarchy ===== */
-
-/* Верхний корпоративный блок */
-.footer-main {
-  margin-bottom: 6px;
-}
-
-.footer-legal {
-  margin-bottom: 14px; /* ← ВАЖНО: увеличенный отступ вниз */
-}
-
-/* Compliance + disclaimer — плотная группа */
-.footer-compliance {
-  margin-bottom: 4px; /* ← минимальный отступ */
-}
-
-.footer-disclaimer {
-  margin-bottom: 0;
-}
-
+/* ===== MOBILE ===== */
 @media (max-width: 768px) {
+  .footer-bottom .container .row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
   .footer-bottom-left,
   .footer-bottom-right {
     text-align: center;
   }
 
   .footer-links {
-    margin-top: 10px;
+    justify-content: center;
+    gap: 12px;
   }
 
-  .footer-links a {
-    margin: 0 8px;
+  /* Чуть компактнее на мобильном */
+  .footer-legal {
+    margin-bottom: 10px;
+  }
+
+  .footer-disclaimer {
+    font-size: 11.5px;
   }
 }
