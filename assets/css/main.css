@@ -3811,3 +3811,46 @@ section,
   color: rgba(255, 255, 255, 0.5);
   font-size: 12px;
 }
+
+/* ===== Footer Bottom Layout ===== */
+
+.footer-bottom-left {
+  text-align: left;
+}
+
+.footer-bottom-right {
+  text-align: right;
+}
+
+/* Links */
+.footer-links a {
+  margin-left: 16px;
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:first-child {
+  margin-left: 0;
+}
+
+.footer-links a:hover {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .footer-bottom-left,
+  .footer-bottom-right {
+    text-align: center;
+  }
+
+  .footer-links {
+    margin-top: 10px;
+  }
+
+  .footer-links a {
+    margin: 0 8px;
+  }
+}
