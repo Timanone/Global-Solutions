@@ -3775,23 +3775,17 @@ section,
   background: transparent !important;
 }
 
-/* ===== Footer Bottom Typography + Layout (STABLE with Bootstrap grid) ===== */
+/* ===== Footer Bottom Typography + Layout ===== */
 
 .footer-bottom {
   padding-top: 18px;
   padding-bottom: 18px;
 }
 
-/* Сброс случайных отступов, если где-то остался <p> */
-.footer-bottom .copyright p {
-  margin: 0;
-}
-
-/* LEFT / RIGHT alignment */
 .footer-bottom-left { text-align: left; }
 .footer-bottom-right { text-align: right; }
 
-/* Типографика строк */
+/* Типографика */
 .footer-main {
   color: rgba(255, 255, 255, 0.85);
   font-size: 14px;
@@ -3804,14 +3798,14 @@ section,
   color: rgba(255, 255, 255, 0.65);
   font-size: 13px;
   line-height: 1.45;
-  margin-bottom: 14px;
+  margin-bottom: 10px;  /* было 14px — сделал плотнее */
 }
 
 .footer-compliance {
   color: rgba(255, 255, 255, 0.6);
   font-size: 12.5px;
   line-height: 1.45;
-  margin-bottom: 4px;
+  margin-bottom: 2px;   /* чтобы compliance + disclaimer были “вместе” */
 }
 
 .footer-disclaimer {
@@ -3821,7 +3815,7 @@ section,
   margin-bottom: 0;
 }
 
-/* LINKS */
+/* Links справа */
 .footer-links {
   display: flex;
   justify-content: flex-end;
@@ -3842,8 +3836,8 @@ section,
   text-decoration: underline;
 }
 
-/* ===== MOBILE ===== */
-@media (max-width: 768px) {
+/* Мобайл — включаем ТОЛЬКО на реально узких экранах */
+@media (max-width: 576px) {
   .footer-bottom-left,
   .footer-bottom-right {
     text-align: center;
@@ -3856,13 +3850,5 @@ section,
   .footer-links {
     justify-content: center;
     gap: 12px;
-  }
-
-  .footer-legal {
-    margin-bottom: 10px;
-  }
-
-  .footer-disclaimer {
-    font-size: 11.5px;
   }
 }
