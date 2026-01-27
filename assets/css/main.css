@@ -3688,7 +3688,7 @@ section,
 }
 
 .footer-logo-img {
-  max-height: 72px;   /* можно 64 / 72 / 80 — смотри визуально */
+  max-height: 80px;   /* можно 64 / 72 / 80 — смотри визуально */
   width: auto;
   display: block;
 }
