@@ -3776,79 +3776,111 @@ section,
 }
 
 /* =========================================================
-   FOOTER BOTTOM — FINAL (Variant B)
-   Right column pinned to bottom
+   FOOTER BOTTOM — FIXED (Full width + correct alignment)
    ========================================================= */
 
-/* Base container */
-.footer-bottom {
+/* Full-width strip */
+.footer-bottom{
+  width: 100%;
+  display: block;
   padding: 18px 0;
   background: linear-gradient(to top, rgba(0,0,0,0.35), rgba(0,0,0,0.15));
 }
 
-/* Stretch columns to equal height */
-.footer-bottom .row {
-  align-items: stretch !important;
+/* If template uses container inside footer-bottom, keep it centered */
+.footer-bottom .container,
+.footer-bottom .container-fluid{
+  width: 100%;
 }
 
-/* Left / Right columns */
+/* Bootstrap row defaults sometimes get overridden in templates */
+.footer-bottom .row{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+/* Columns */
 .footer-bottom-left,
-.footer-bottom-right {
+.footer-bottom-right{
   display: flex;
   flex-direction: column;
+  min-width: 0; /* prevents weird overflow pushing layout */
 }
 
-/* RIGHT column — push links to bottom */
-.footer-bottom-right {
+/* LEFT — always left aligned */
+.footer-bottom-left{
+  justify-content: flex-start;
+  text-align: left;
+}
+
+/* RIGHT — links pinned to bottom-right */
+.footer-bottom-right{
   justify-content: flex-end;
   text-align: right;
+  align-items: flex-end;
+}
+
+/* Avoid inherited styling from theme blocks */
+.footer-bottom-left .copyright{
+  margin: 0;
+  padding: 0;
+  text-align: left;
 }
 
 /* ================= TYPOGRAPHY ================= */
-/* ===== Footer bottom text hierarchy ===== */
 
-/* ГРУППА 1 — бренд + юр. данные (СКЛЕЕНЫ) */
-.footer-main {
+/* Group 1 (no gap inside group) */
+.footer-main{
   color: rgba(255, 255, 255, 0.88);
   font-size: 14px;
   font-weight: 500;
   line-height: 1.45;
-  margin-bottom: 0;              /* ← ВАЖНО: НЕТ отступа */
+  margin: 0;
 }
 
-.footer-legal {
+.footer-legal{
   color: rgba(255, 255, 255, 0.65);
   font-size: 13px;
   line-height: 1.45;
-  margin-bottom: 12px;           /* ← ОТСТУП между ГРУППАМИ */
+  margin: 0;
 }
 
-/* ГРУППА 2 — compliance + B2B (СКЛЕЕНЫ) */
-.footer-compliance {
+/* Small gap between Group 1 and Group 2 */
+.footer-gap{
+  height: 10px; /* “небольшая дистанция” между группами */
+}
+
+/* Group 2 (no gap inside group) */
+.footer-compliance{
   color: rgba(255, 255, 255, 0.6);
   font-size: 12.5px;
   line-height: 1.45;
-  margin-bottom: 0;              /* ← НЕТ отступа */
+  margin: 0;
 }
 
-.footer-disclaimer {
+.footer-disclaimer{
   color: rgba(255, 255, 255, 0.5);
   font-size: 12px;
   line-height: 1.45;
-  margin-bottom: 0;
+  margin: 0;
 }
 
 /* ================= LINKS ================= */
 
-.footer-links {
+/* Make links vertical (stable) and pinned bottom-right */
+.footer-links{
   display: flex;
-  justify-content: flex-end;
-  gap: 18px;
-  flex-wrap: wrap;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
 }
 
-.footer-links a {
+.footer-links a{
   font-size: 12.5px;
   color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
@@ -3856,32 +3888,26 @@ section,
   white-space: nowrap;
 }
 
-.footer-links a:hover {
+.footer-links a:hover{
   color: rgba(255, 255, 255, 0.88);
   text-decoration: underline;
 }
 
 /* ================= MOBILE ================= */
 
-@media (max-width: 768px) {
+@media (max-width: 768px){
   .footer-bottom-left,
-  .footer-bottom-right {
+  .footer-bottom-right{
     text-align: center;
+    align-items: center;
   }
 
-  .footer-bottom-right {
+  .footer-bottom-right{
     justify-content: center;
-    margin-top: 10px;
+    margin-top: 12px;
   }
 
-  .footer-links {
-    justify-content: center;
-    gap: 14px;
-  }
-}
-
-@media (max-width: 576px) {
-  .footer-links {
-    gap: 12px;
+  .footer-links{
+    align-items: center;
   }
 }
