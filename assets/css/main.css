@@ -3836,6 +3836,39 @@ section,
   text-decoration: underline;
 }
 
+.footer-bottom .row.align-items-center {
+  align-items: flex-start !important;
+}
+
+.footer-bottom-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.footer-links {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 768px) {
+  .footer-bottom .row.align-items-center {
+    align-items: center !important;
+  }
+
+  .footer-bottom-right {
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .footer-links {
+    justify-content: center;
+    gap: 14px;
+  }
+}
+
 /* Мобайл — включаем ТОЛЬКО на реально узких экранах */
 @media (max-width: 576px) {
   .footer-bottom-left,
