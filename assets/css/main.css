@@ -3905,3 +3905,10 @@ section,
 .footer-disclaimer{
   margin: 0 !important;
 }
+/* Footer bottom links — single line */
+.footer-links{
+  flex-direction: row !important;
+  gap: 18px;
+  justify-content: flex-end;
+  align-items: center;
+}
