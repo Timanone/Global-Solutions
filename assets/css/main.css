@@ -3901,7 +3901,6 @@ section,
     justify-content: center;
   }
 }
-/* Disable scroll-top button (prevents collision with chat) */
-#scroll-top { 
-  display: none !important; 
-}
+
+/* Disable scroll-top button (chat occupies the bottom-right area) */
+#scroll-top{ display:none !important; }
