@@ -3846,6 +3846,26 @@ section,
   text-decoration: underline;
 }
 
+/* --- Footer bottom alignment polish --- */
+
+/* Левый блок: делаем строки ровными и управляемыми */
+.footer-bottom-left .footer-main,
+.footer-bottom-left .footer-legal,
+.footer-bottom-left .footer-compliance,
+.footer-bottom-left .footer-disclaimer {
+  display: block;
+}
+
+/* Иерархия отступов: верх отделяем сильнее, низ — плотнее */
+.footer-legal { margin-bottom: 12px; }      /* верхний блок отделили */
+.footer-compliance { margin-bottom: 2px; }  /* низ собрали */
+.footer-disclaimer { margin-bottom: 0; }
+
+/* Правый блок: опускаем ссылки чуть ниже (вровень с нижним блоком слева) */
+.footer-bottom-right {
+  padding-top: 22px; /* подстройка: 18–26px по вкусу */
+}
+
 /* ===== Mobile ===== */
 @media (max-width: 768px) {
   .footer-bottom .row.align-items-center {
