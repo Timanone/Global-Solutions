@@ -3912,3 +3912,26 @@ section,
   justify-content: flex-end;
   align-items: center;
 }
+/* ================================
+   FOOTER BOTTOM LINKS — FINAL FIX
+   ================================ */
+
+/* Desktop & general */
+.footer-links{
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 18px !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+  white-space: nowrap;
+}
+
+/* Mobile override — keep in ONE line */
+@media (max-width: 768px){
+  .footer-links{
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+  }
+}
