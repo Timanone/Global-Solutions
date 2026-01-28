@@ -3777,7 +3777,7 @@ section,
 
 /* =========================================================
    FOOTER BOTTOM — FINAL (Global Solutions)
-   Left: 2 text groups | Right: legal links pinned bottom
+   Left: 2 text groups | Right: legal links on one line
    ========================================================= */
 
 .footer-bottom{
@@ -3787,7 +3787,6 @@ section,
   background: linear-gradient(to top, rgba(0,0,0,0.35), rgba(0,0,0,0.15));
 }
 
-/* Stabilize Bootstrap row behavior even if theme overrides it */
 .footer-bottom .row{
   width: 100%;
   display: flex;
@@ -3795,7 +3794,6 @@ section,
   align-items: stretch;
 }
 
-/* Columns */
 .footer-bottom-left,
 .footer-bottom-right{
   display: flex;
@@ -3803,27 +3801,24 @@ section,
   min-width: 0;
 }
 
-/* LEFT: always left aligned */
 .footer-bottom-left{
   justify-content: flex-start;
   text-align: left;
 }
 
-/* RIGHT: pinned to bottom-right */
 .footer-bottom-right{
   justify-content: flex-end;
   align-items: flex-end;
   text-align: right;
 }
 
-/* Reset possible theme styles inside */
 .footer-bottom-left .copyright{
   margin: 0;
   padding: 0;
   text-align: left;
 }
 
-/* ===== Typography: Group 1 (brand + legal) ===== */
+/* Group 1 */
 .footer-main{
   color: rgba(255,255,255,0.88);
   font-size: 14px;
@@ -3839,12 +3834,10 @@ section,
   margin: 0;
 }
 
-/* Small gap BETWEEN Group 1 and Group 2 */
-.footer-gap{
-  height: 10px;
-}
+/* Gap between groups */
+.footer-gap{ height: 10px; }
 
-/* ===== Typography: Group 2 (compliance + disclaimer) ===== */
+/* Group 2 */
 .footer-compliance{
   color: rgba(255,255,255,0.60);
   font-size: 12.5px;
@@ -3859,26 +3852,34 @@ section,
   margin: 0;
 }
 
-/* ===== Links (right column) ===== */
-.footer-links{
+/* Remove any accidental margins */
+.footer-compliance,
+.footer-disclaimer{
+  margin: 0 !important;
+}
+
+/* ===== Bottom legal links (separate class!) ===== */
+.footer-legal-links{
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: flex-end;
+  flex-direction: row;
+  gap: 18px;
   justify-content: flex-end;
+  align-items: center;
+  flex-wrap: nowrap;
+  white-space: nowrap;
   margin: 0;
   padding: 0;
 }
 
-.footer-links a{
+.footer-legal-links a{
   font-size: 12.5px;
   color: rgba(255,255,255,0.60);
   text-decoration: none;
-  transition: color 0.2s ease, opacity 0.2s ease;
+  transition: color 0.2s ease;
   white-space: nowrap;
 }
 
-.footer-links a:hover{
+.footer-legal-links a:hover{
   color: rgba(255,255,255,0.88);
   text-decoration: underline;
 }
@@ -3896,29 +3897,7 @@ section,
     margin-top: 12px;
   }
 
-  .footer-links{
-    align-items: center;
-  }
-  
-/* Footer: remove gap between compliance lines */
-.footer-compliance,
-.footer-disclaimer{
-  margin: 0 !important;
-}
-  
-/* Footer bottom legal links — single line (does NOT affect footer columns) */
-.footer-legal-links{
-  display: flex;
-  flex-direction: row;
-  gap: 18px;
-  justify-content: flex-end;
-  align-items: center;
-  white-space: nowrap;
-}
-
-@media (max-width: 768px){
   .footer-legal-links{
     justify-content: center;
-    flex-wrap: nowrap;
   }
 }
