@@ -3782,10 +3782,19 @@ section,
   padding-bottom: 18px;
 }
 
-.footer-bottom-left { text-align: left; }
-.footer-bottom-right { text-align: right; }
+/* Row alignment (override Bootstrap align-items-center) */
+.footer-bottom .row.align-items-center {
+  align-items: flex-start !important;
+}
 
-/* Типографика */
+.footer-bottom-left { text-align: left; }
+.footer-bottom-right {
+  display: flex;
+  justify-content: flex-end;
+  text-align: right;
+}
+
+/* Typography */
 .footer-main {
   color: rgba(255, 255, 255, 0.85);
   font-size: 14px;
@@ -3798,14 +3807,14 @@ section,
   color: rgba(255, 255, 255, 0.65);
   font-size: 13px;
   line-height: 1.45;
-  margin-bottom: 10px;  /* было 14px — сделал плотнее */
+  margin-bottom: 10px;
 }
 
 .footer-compliance {
   color: rgba(255, 255, 255, 0.6);
   font-size: 12.5px;
   line-height: 1.45;
-  margin-bottom: 2px;   /* чтобы compliance + disclaimer были “вместе” */
+  margin-bottom: 2px; /* compliance + disclaimer together */
 }
 
 .footer-disclaimer {
@@ -3815,11 +3824,12 @@ section,
   margin-bottom: 0;
 }
 
-/* Links справа */
+/* Links (right side) */
 .footer-links {
   display: flex;
   justify-content: flex-end;
-  gap: 16px;
+  align-items: center;
+  gap: 18px;
   flex-wrap: wrap;
 }
 
@@ -3836,26 +3846,15 @@ section,
   text-decoration: underline;
 }
 
-.footer-bottom .row.align-items-center {
-  align-items: flex-start !important;
-}
-
-.footer-bottom-right {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.footer-links {
-  display: flex;
-  gap: 18px;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
 /* ===== Mobile ===== */
 @media (max-width: 768px) {
   .footer-bottom .row.align-items-center {
     align-items: center !important;
+  }
+
+  .footer-bottom-left,
+  .footer-bottom-right {
+    text-align: center;
   }
 
   .footer-bottom-right {
@@ -3869,19 +3868,9 @@ section,
   }
 }
 
-/* Мобайл — включаем ТОЛЬКО на реально узких экранах */
+/* Extra narrow */
 @media (max-width: 576px) {
-  .footer-bottom-left,
-  .footer-bottom-right {
-    text-align: center;
-  }
-
-  .footer-bottom-right {
-    margin-top: 10px;
-  }
-
   .footer-links {
-    justify-content: center;
     gap: 12px;
   }
 }
