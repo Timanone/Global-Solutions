@@ -3776,10 +3776,10 @@ section,
 }
 
 /* =========================================================
-   FOOTER BOTTOM — FIXED (Full width + correct alignment)
+   FOOTER BOTTOM — FINAL (Global Solutions)
+   Left: 2 text groups | Right: legal links pinned bottom
    ========================================================= */
 
-/* Full-width strip */
 .footer-bottom{
   width: 100%;
   display: block;
@@ -3787,19 +3787,12 @@ section,
   background: linear-gradient(to top, rgba(0,0,0,0.35), rgba(0,0,0,0.15));
 }
 
-/* If template uses container inside footer-bottom, keep it centered */
-.footer-bottom .container,
-.footer-bottom .container-fluid{
-  width: 100%;
-}
-
-/* Bootstrap row defaults sometimes get overridden in templates */
+/* Stabilize Bootstrap row behavior even if theme overrides it */
 .footer-bottom .row{
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
-  justify-content: space-between;
 }
 
 /* Columns */
@@ -3807,94 +3800,90 @@ section,
 .footer-bottom-right{
   display: flex;
   flex-direction: column;
-  min-width: 0; /* prevents weird overflow pushing layout */
+  min-width: 0;
 }
 
-/* LEFT — always left aligned */
+/* LEFT: always left aligned */
 .footer-bottom-left{
   justify-content: flex-start;
   text-align: left;
 }
 
-/* RIGHT — links pinned to bottom-right */
+/* RIGHT: pinned to bottom-right */
 .footer-bottom-right{
   justify-content: flex-end;
-  text-align: right;
   align-items: flex-end;
+  text-align: right;
 }
 
-/* Avoid inherited styling from theme blocks */
+/* Reset possible theme styles inside */
 .footer-bottom-left .copyright{
   margin: 0;
   padding: 0;
   text-align: left;
 }
 
-/* ================= TYPOGRAPHY ================= */
-
-/* Group 1 (no gap inside group) */
+/* ===== Typography: Group 1 (brand + legal) ===== */
 .footer-main{
-  color: rgba(255, 255, 255, 0.88);
+  color: rgba(255,255,255,0.88);
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.45;
   margin: 0;
 }
 
 .footer-legal{
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255,255,255,0.65);
   font-size: 13px;
   line-height: 1.45;
   margin: 0;
 }
 
-/* Small gap between Group 1 and Group 2 */
+/* Small gap BETWEEN Group 1 and Group 2 */
 .footer-gap{
-  height: 10px; /* “небольшая дистанция” между группами */
+  height: 10px;
 }
 
-/* Group 2 (no gap inside group) */
+/* ===== Typography: Group 2 (compliance + disclaimer) ===== */
 .footer-compliance{
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255,255,255,0.60);
   font-size: 12.5px;
   line-height: 1.45;
   margin: 0;
 }
 
 .footer-disclaimer{
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255,255,255,0.50);
   font-size: 12px;
   line-height: 1.45;
   margin: 0;
 }
 
-/* ================= LINKS ================= */
-
-/* Make links vertical (stable) and pinned bottom-right */
+/* ===== Links (right column) ===== */
 .footer-links{
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
   gap: 10px;
+  align-items: flex-end;
+  justify-content: flex-end;
   margin: 0;
   padding: 0;
 }
 
 .footer-links a{
   font-size: 12.5px;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255,255,255,0.60);
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, opacity 0.2s ease;
   white-space: nowrap;
 }
 
 .footer-links a:hover{
-  color: rgba(255, 255, 255, 0.88);
+  color: rgba(255,255,255,0.88);
   text-decoration: underline;
 }
 
-/* ================= MOBILE ================= */
-
+/* ===== Mobile ===== */
 @media (max-width: 768px){
   .footer-bottom-left,
   .footer-bottom-right{
