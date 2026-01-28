@@ -3900,3 +3900,8 @@ section,
     align-items: center;
   }
 }
+/* Footer: remove gap between compliance lines */
+.footer-compliance,
+.footer-disclaimer{
+  margin: 0 !important;
+}
