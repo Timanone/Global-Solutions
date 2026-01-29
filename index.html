@@ -1721,6 +1721,32 @@ document.addEventListener('DOMContentLoaded', function () {
   const submitWrap = document.getElementById('submitWrap');
   const submitBtn = document.getElementById('submitBtn') || form.querySelector('button[type="submit"], input[type="submit"]');
 
+    // =========================
+  // Optional SELECTs filled state (Trade Terms, etc.)
+  // =========================
+  const selectControls = form.querySelectorAll('select.form-control');
+
+  function syncSelectFilledState() {
+    selectControls.forEach(select => {
+      const wrap = select.closest('.input-with-icon');
+      if (!wrap) return;
+
+      if (select.value && select.value.trim() !== '') {
+        wrap.classList.add('is-filled');
+      } else {
+        wrap.classList.remove('is-filled');
+      }
+    });
+  }
+
+  // initial state (page load / autofill)
+  syncSelectFilledState();
+
+  // update on change
+  selectControls.forEach(select => {
+    select.addEventListener('change', syncSelectFilledState);
+  });
+
   function syncB2BInvalidState() {
     if (!b2bCheckbox || !b2bWrap) return;
     const shouldShow = form.classList.contains('was-validated');
