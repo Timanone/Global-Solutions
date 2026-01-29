@@ -3993,22 +3993,3 @@ section,
   margin-bottom: 4px;
   color: #ffffff;
 }
-/* Success message: subtle entrance animation */
-#contact .form-status-success {
-  opacity: 0;
-  transform: translateY(6px);
-  transition: opacity 200ms ease, transform 200ms ease;
-}
-
-#contact .form-status-success.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Respect users who prefer reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  #contact .form-status-success {
-    transition: none;
-    transform: none;
-  }
-}
