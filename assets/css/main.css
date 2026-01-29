@@ -3939,3 +3939,32 @@ section,
   border-color: transparent; /* default */
   box-shadow: none;
 }
+/* =========================
+   Checkbox validation (B2B confirm)
+   ========================= */
+
+/* do nothing before submit */
+#contact form:not(.was-validated) input[type="checkbox"]:invalid {
+  outline: none;
+}
+
+/* highlight checkbox ROW after submit */
+#contact form.was-validated input[type="checkbox"]:invalid {
+  outline: none;
+}
+
+/* highlight the container */
+#contact form.was-validated input[type="checkbox"]:invalid
+  + span,
+#contact form.was-validated .b2b-confirm:has(input[type="checkbox"]:invalid) {
+  border: 1px solid rgba(220, 53, 69, 0.5);
+  background-color: rgba(220, 53, 69, 0.05);
+  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.12);
+  border-radius: 6px;
+  padding: 10px 12px;
+}
+
+/* optional: red text */
+#contact form.was-validated .b2b-confirm:has(input[type="checkbox"]:invalid) span {
+  color: #b02a37;
+}
