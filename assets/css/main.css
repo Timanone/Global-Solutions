@@ -3980,9 +3980,9 @@ section,
   padding: 14px 18px;
   border-radius: 10px;
 
-  background-color: rgba(30, 157, 225, 0.08); /* #1e9de1 */
-  border: 1px solid rgba(30, 157, 225, 0.55);
-  color: #0b3a5a;
+  background-color: #0b3356;
+  border: 1px solid #0b3356;
+  color: #ffffff;
 
   line-height: 1.4;
   font-weight: 500;
@@ -3991,5 +3991,5 @@ section,
 #contact .form-status-success strong {
   display: block;
   margin-bottom: 4px;
-  color: #0b3a5a;
+  color: #ffffff;
 }
