@@ -3905,17 +3905,43 @@ section,
 /* Disable scroll-top button (chat occupies the bottom-right area) */
 #scroll-top{ display:none !important; }
 
-/* Highlight invalid required fields (browser validation) */
-.php-email-form input:invalid,
-.php-email-form select:invalid,
-.php-email-form textarea:invalid {
-  border-color: #dc3545 !important;
-  box-shadow: 0 0 0 .2rem rgba(220,53,69,.15);
+/* ===== Form validation highlight (red) ===== */
+
+/* Make browser focus visible (optional, clean) */
+#contact form :focus {
+  outline: none;
 }
 
-/* When user is typing, remove red until re-check happens */
-.php-email-form input:focus:invalid,
-.php-email-form select:focus:invalid,
-.php-email-form textarea:focus:invalid {
-  box-shadow: 0 0 0 .2rem rgba(220,53,69,.25);
+/* 1) If you have wrapper like .input-with-icon */
+#contact .input-with-icon:has(input:invalid),
+#contact .input-with-icon:has(textarea:invalid),
+#contact .input-with-icon:has(select:invalid) {
+  border: 2px solid #dc3545 !important;
+  box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.18) !important;
+}
+
+/* 2) If your border is on .form-control itself */
+#contact .form-control:invalid {
+  border: 2px solid #dc3545 !important;
+  box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.18) !important;
+}
+
+/* IMPORTANT: don't show red immediately when page loads */
+#contact form:not(.was-validated) .form-control:invalid {
+  border-color: inherit !important;
+  box-shadow: none !important;
+}
+
+/* When we decide to show validation */
+#contact form.was-validated .form-control:invalid {
+  border: 2px solid #dc3545 !important;
+  box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.18) !important;
+}
+
+/* also highlight wrapper when validated */
+#contact form.was-validated .input-with-icon:has(input:invalid),
+#contact form.was-validated .input-with-icon:has(textarea:invalid),
+#contact form.was-validated .input-with-icon:has(select:invalid) {
+  border: 2px solid #dc3545 !important;
+  box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.18) !important;
 }
