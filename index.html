@@ -1763,31 +1763,38 @@ document.addEventListener('DOMContentLoaded', function () {
     try {
       const formData = new FormData(form);
 
-      const response = await fetch(form.action, {
-        method: form.method,
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      });
+const response = await fetch(form.action, {
+  method: form.method,
+  body: formData,
+  headers: { 'Accept': 'application/json' }
+});
 
-      if (response.ok) {
-        // фиксируем успешную отправку
-        form.dataset.submitted = 'true';
+if (response.ok) {
+  // фиксируем успешную отправку
+  form.dataset.submitted = 'true';
 
-        // success-блок вместо кнопки (как договаривались)
-        if (submitWrap) {
-          submitWrap.innerHTML = `
-            <div class="form-status-success" role="status" aria-live="polite">
-              <strong>Inquiry sent successfully.</strong><br>
-              Thank you. We will review your request and respond within <strong>1 business day</strong>.
-            </div>
-          `;
-        }
+  // success-блок вместо кнопки (как договаривались)
+  if (submitWrap) {
+    submitWrap.innerHTML = `
+      <div class="form-status-success is-visible" role="status" aria-live="polite">
+        <strong>Inquiry sent successfully.</strong><br>
+        Thank you. We will review your request and respond within <strong>1 business day</strong>.
+      </div>
+    `;
+  }
 
-        // можно оставить status как дублирующую строку или убрать:
-        if (status) {
-          status.style.display = 'none';
-          status.textContent = '';
-        }
+  // дублирующий статус скрываем (он больше не нужен)
+  if (status) {
+    status.style.display = 'none';
+    status.textContent = '';
+  }
+
+  // очищаем форму визуально
+  form.reset();
+
+  // сбрасываем валидацию
+  form.classList.remove('was-validated');
+}
 
         // очищаем поля (визуально)
         form.reset();
