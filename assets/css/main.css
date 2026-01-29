@@ -4120,3 +4120,13 @@ section,
   border-color: rgba(220, 53, 69, 0.75) !important;
   box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.14) !important;
 }
+/* JS-assisted filled state for OPTIONAL selects (e.g., Trade Terms) */
+#contact .input-with-icon.is-filled {
+  background: rgba(177, 224, 254, 0.515) !important;
+  border-color: rgba(30, 157, 225, 0.55) !important;
+}
+
+/* Optional: make icon a bit stronger when filled */
+#contact .input-with-icon.is-filled i {
+  opacity: 0.85;
+}
