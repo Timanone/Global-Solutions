@@ -1774,14 +1774,18 @@ document.addEventListener('DOMContentLoaded', function () {
         form.dataset.submitted = 'true';
 
         // success-блок вместо кнопки (как договаривались)
-        if (submitWrap) {
-          submitWrap.innerHTML = `
-            <div class="form-status-success" role="status" aria-live="polite">
-              <strong>Inquiry sent successfully</strong><br>
-              We will review your request and respond within 1 business day
-            </div>
-          `;
-        }
+if (submitWrap) {
+  submitWrap.innerHTML = `
+    <div id="successBox" class="form-status-success" role="status" aria-live="polite">
+      <strong><span class="success-check">✓</span> Inquiry sent successfully</strong><br>
+      We will review your request and respond within 1 business day
+    </div>
+  `;
+
+  // запускаем анимацию аккуратно (после вставки в DOM)
+  const successBox = document.getElementById('successBox');
+  if (successBox) requestAnimationFrame(() => successBox.classList.add('is-visible'));
+}
 
         // можно оставить status как дублирующую строку или убрать:
         if (status) {
