@@ -3973,19 +3973,18 @@ section,
    Form success animation (B2B minimal)
    ========================= */
 
-#contact .form-status-success{
-  margin-top: 10px;
+#contact .form-status-success {
+  margin-top: 18px;      /* ↑ больше воздуха сверху */
+  margin-bottom: 6px;    /* ↓ немного отделяем от trust-strip */
   display: inline-block;
   text-align: center;
-  padding: 14px 18px;
-  border-radius: 10px;
-
-  background: #0b3356;           /* твой тёмный фон */
-  border: 1px solid #0b3356;
+  padding: 18px 22px;    /* ↑ комфортнее внутри */
+  border-radius: 12px;
+  background-color: #0b3356;
   color: #ffffff;
-
-  line-height: 1.4;
+  line-height: 1.45;
   font-weight: 500;
+}
 
   /* animation start state */
   opacity: 0;
