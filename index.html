@@ -1718,13 +1718,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const b2bCheckbox = form.querySelector('input[name="b2b_confirm"]');
   const b2bWrap = form.querySelector('.b2b-confirm');
+
+  // ВАЖНО: этот wrapper должен существовать в HTML (см. ниже)
   const submitWrap = document.getElementById('submitWrap');
-  const submitBtn = document.getElementById('submitBtn') || form.querySelector('button[type="submit"], input[type="submit"]');
+
+  // кнопка (если id нет — берём первую submit-кнопку)
+  const submitBtn =
+    document.getElementById('submitBtn') ||
+    form.querySelector('button[type="submit"], input[type="submit"]');
 
   function syncB2BInvalidState() {
     if (!b2bCheckbox || !b2bWrap) return;
+
     const shouldShow = form.classList.contains('was-validated');
     const isValid = b2bCheckbox.checkValidity();
+
     if (shouldShow && !isValid) b2bWrap.classList.add('is-invalid');
     else b2bWrap.classList.remove('is-invalid');
   }
@@ -1737,6 +1745,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // защита от повторной отправки после успеха
     if (form.dataset.submitted === 'true') return;
 
+    // включаем подсветку ошибок
     form.classList.add('was-validated');
     syncB2BInvalidState();
 
@@ -1763,58 +1772,59 @@ document.addEventListener('DOMContentLoaded', function () {
     try {
       const formData = new FormData(form);
 
-const response = await fetch(form.action, {
-  method: form.method,
-  body: formData,
-  headers: { 'Accept': 'application/json' }
-});
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
 
-if (response.ok) {
-  // фиксируем успешную отправку
-  form.dataset.submitted = 'true';
+      if (response.ok) {
+        // фиксируем успешную отправку
+        form.dataset.submitted = 'true';
 
-  // success-блок вместо кнопки (как договаривались)
-  if (submitWrap) {
-    submitWrap.innerHTML = `
-      <div class="form-status-success is-visible" role="status" aria-live="polite">
-        <strong>Inquiry sent successfully.</strong><br>
-        Thank you. We will review your request and respond within <strong>1 business day</strong>.
-      </div>
-    `;
-  }
+        // success-блок вместо кнопки
+        if (submitWrap) {
+          submitWrap.innerHTML = `
+            <div class="form-status-success is-visible" role="status" aria-live="polite">
+              <strong>Inquiry sent successfully.</strong><br>
+              Thank you. We will review your request and respond within <strong>1 business day</strong>.
+            </div>
+          `;
+        } else {
+          // если вдруг submitWrap нет — показываем хотя бы статус
+          if (status) {
+            status.textContent = 'Inquiry sent successfully. We respond within 1 business day.';
+          }
+        }
 
-  // дублирующий статус скрываем (он больше не нужен)
-  if (status) {
-    status.style.display = 'none';
-    status.textContent = '';
-  }
+        // скрываем дублирующий status (если используем success-блок)
+        if (status && submitWrap) {
+          status.style.display = 'none';
+          status.textContent = '';
+        }
 
-  // очищаем форму визуально
-  form.reset();
-
-  // сбрасываем валидацию
-  form.classList.remove('was-validated');
-}
-
-        // очищаем поля (визуально)
+        // очищаем форму
         form.reset();
 
-        // убираем подсветку ошибок
+        // сбрасываем подсветку ошибок
         if (b2bWrap) b2bWrap.classList.remove('is-invalid');
         form.classList.remove('was-validated');
 
         return;
-      } else {
-        // если не ок — возвращаем кнопку
-        if (status) status.textContent = 'Submission failed. Please try again or email us at info@globalsolutions.lv.';
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          if (submitBtn.tagName.toLowerCase() === 'button') submitBtn.textContent = 'SUBMIT INQUIRY';
-          else submitBtn.value = 'SUBMIT INQUIRY';
-        }
       }
+
+      // НЕ УСПЕХ (response not ok)
+      if (status) status.textContent = 'Submission failed. Please try again or email us at info@globalsolutions.lv.';
+
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        if (submitBtn.tagName.toLowerCase() === 'button') submitBtn.textContent = 'SUBMIT INQUIRY';
+        else submitBtn.value = 'SUBMIT INQUIRY';
+      }
+
     } catch (err) {
       if (status) status.textContent = 'Network error. Please try again later.';
+
       if (submitBtn) {
         submitBtn.disabled = false;
         if (submitBtn.tagName.toLowerCase() === 'button') submitBtn.textContent = 'SUBMIT INQUIRY';
