@@ -3905,43 +3905,37 @@ section,
 /* Disable scroll-top button (chat occupies the bottom-right area) */
 #scroll-top{ display:none !important; }
 
-/* ===== Form validation highlight (red) ===== */
+/* =========================
+   Contact form validation (show ONLY after submit)
+   ========================= */
 
-/* Make browser focus visible (optional, clean) */
+/* Optional: remove default focus outline (your design uses custom focus) */
 #contact form :focus {
   outline: none;
 }
 
-/* 1) If you have wrapper like .input-with-icon */
-#contact .input-with-icon:has(input:invalid),
-#contact .input-with-icon:has(textarea:invalid),
-#contact .input-with-icon:has(select:invalid) {
-  border: 2px solid #dc3545 !important;
-  box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.18) !important;
-}
-
-/* 2) If your border is on .form-control itself */
-#contact .form-control:invalid {
-  border: 2px solid #dc3545 !important;
-  box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.18) !important;
-}
-
-/* IMPORTANT: don't show red immediately when page loads */
-#contact form:not(.was-validated) .form-control:invalid {
+/* Nothing is red before submit */
+#contact form:not(.was-validated) .form-control:invalid,
+#contact form:not(.was-validated) .form-control:invalid:focus {
   border-color: inherit !important;
   box-shadow: none !important;
 }
 
-/* When we decide to show validation */
+/* Show red ONLY after submit */
 #contact form.was-validated .form-control:invalid {
-  border: 2px solid #dc3545 !important;
-  box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.18) !important;
+  border: 1px solid rgba(220, 53, 69, 0.55) !important;  /* lighter */
+  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.12) !important; /* softer */
 }
 
-/* also highlight wrapper when validated */
-#contact form.was-validated .input-with-icon:has(input:invalid),
-#contact form.was-validated .input-with-icon:has(textarea:invalid),
-#contact form.was-validated .input-with-icon:has(select:invalid) {
-  border: 2px solid #dc3545 !important;
-  box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.18) !important;
+/* Slightly stronger when user focuses invalid field */
+#contact form.was-validated .form-control:invalid:focus {
+  border-color: rgba(220, 53, 69, 0.75) !important;
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.14) !important;
+}
+
+/* If your inputs are inside .input-with-icon and it has a border too,
+   keep wrapper consistent (but without :has() to avoid browser issues) */
+#contact form.was-validated .input-with-icon {
+  border-color: transparent; /* default */
+  box-shadow: none;
 }
