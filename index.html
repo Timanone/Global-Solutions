@@ -1720,7 +1720,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
-    
+
+    form.classList.add('was-validated');
+
     // Проверка валидации + автоскролл
     if (!form.checkValidity()) {
       const firstInvalid = form.querySelector(':invalid');
