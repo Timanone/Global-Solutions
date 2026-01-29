@@ -4082,3 +4082,27 @@ section,
   border-color: rgba(220, 53, 69, 0.75) !important;
   box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.14) !important;
 }
+
+/* =========================
+   Select placeholder vs filled state
+   ========================= */
+
+/* 1) Placeholder look for EMPTY select */
+#contact select.form-control:required:invalid {
+  color: rgba(11, 51, 86, 0.45) !important; /* same tone as placeholders */
+}
+
+/* also dim icon */
+#contact .input-with-icon:has(select.form-control:required:invalid) i {
+  opacity: 0.45;
+}
+
+/* 2) Normal text when value is chosen */
+#contact select.form-control:required:valid {
+  color: rgba(11, 51, 86, 0.95) !important;
+}
+
+/* icon back to normal */
+#contact .input-with-icon:has(select.form-control:required:valid) i {
+  opacity: 0.85;
+}
