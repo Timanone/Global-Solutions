@@ -3904,3 +3904,18 @@ section,
 
 /* Disable scroll-top button (chat occupies the bottom-right area) */
 #scroll-top{ display:none !important; }
+
+/* Highlight invalid required fields (browser validation) */
+.php-email-form input:invalid,
+.php-email-form select:invalid,
+.php-email-form textarea:invalid {
+  border-color: #dc3545 !important;
+  box-shadow: 0 0 0 .2rem rgba(220,53,69,.15);
+}
+
+/* When user is typing, remove red until re-check happens */
+.php-email-form input:focus:invalid,
+.php-email-form select:focus:invalid,
+.php-email-form textarea:focus:invalid {
+  box-shadow: 0 0 0 .2rem rgba(220,53,69,.25);
+}
