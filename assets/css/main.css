@@ -3969,3 +3969,13 @@ section,
 #contact form.was-validated .b2b-confirm.is-invalid span {
   color: rgba(176, 42, 55, 0.95);
 }
+.form-status-success{
+  margin-top: 6px;
+  display: inline-block;
+  text-align: center;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: rgba(25, 135, 84, 0.08);
+  border: 1px solid rgba(25, 135, 84, 0.22);
+  line-height: 1.35;
+}
