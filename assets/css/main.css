@@ -3970,26 +3970,68 @@ section,
   color: rgba(176, 42, 55, 0.95);
 }
 /* =========================
-   Form success message (brand style)
+   Form success animation (B2B minimal)
    ========================= */
 
-#contact .form-status-success {
+#contact .form-status-success{
   margin-top: 10px;
   display: inline-block;
   text-align: center;
   padding: 14px 18px;
   border-radius: 10px;
 
-  background-color: #0b3356;
+  background: #0b3356;           /* твой тёмный фон */
   border: 1px solid #0b3356;
   color: #ffffff;
 
   line-height: 1.4;
   font-weight: 500;
+
+  /* animation start state */
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 220ms cubic-bezier(0.2, 0.8, 0.2, 1),
+              transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-#contact .form-status-success strong {
-  display: block;
-  margin-bottom: 4px;
+/* visible state */
+#contact .form-status-success.is-visible{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* title row */
+#contact .form-status-success strong{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
   color: #ffffff;
+  font-weight: 700;
+}
+
+/* small check icon */
+#contact .form-status-success .success-check{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.55);
+  color: #ffffff;
+  font-size: 12px;
+  line-height: 1;
+}
+
+/* optional: soften any accidental bullet/marker (на всякий случай) */
+#contact .form-status-success::marker{ content: ""; }
+#contact .form-status-success *{ list-style: none; }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  #contact .form-status-success{
+    transition: none;
+    transform: none;
+  }
 }
