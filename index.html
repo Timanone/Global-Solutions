@@ -1717,61 +1717,64 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (!form) return;
 
-  form.addEventListener('submit', async function (e) {
-    e.preventDefault();
+form.addEventListener('submit', async function (e) {
+  e.preventDefault();
 
-    // включаем "режим подсветки" только после нажатия Submit
-    form.classList.add('was-validated');
+  // Включаем режим подсветки ошибок ТОЛЬКО после нажатия Submit
+  form.classList.add('was-validated');
 
-    // если есть незаполненные поля — не отправляем
-    if (!form.checkValidity()) {
-      const firstInvalid = form.querySelector(':invalid');
-      if (firstInvalid) firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      return;
-    }
+  // Стоп, если есть незаполненные/невалидные поля
+  if (!form.checkValidity()) {
+    const firstInvalid = form.querySelector(':invalid');
+    if (firstInvalid) firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
 
-    if (status) {
-      status.style.display = 'block';
-      status.textContent = 'Sending...';
-    }
-
-    try {
-      const formData = new FormData(form);
-
-      const response = await fetch(form.action, {
-        method: form.method,
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      });
-
-if (response.ok) {
+  // Показываем статус "отправляем"
   if (status) {
-    status.innerHTML = `
-      <strong>Inquiry sent successfully.</strong><br>
-      Thank you. We will review your request and respond within 1 business day.
-    `;
     status.style.display = 'block';
+    status.textContent = 'Sending...';
   }
 
-  // Блокируем кнопку
-  const submitBtn = form.querySelector('button[type="submit"]');
-  if (submitBtn) {
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sent ✓';
-  }
+  try {
+    const formData = new FormData(form);
 
-  form.reset();
-  form.classList.remove('was-validated');
-}
+    const response = await fetch(form.action, {
+      method: form.method,
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    });
 
-      } else {
-        if (status) status.textContent = 'Submission failed. Please try again or email us at info@globalsolutions.lv.';
+    if (response.ok) {
+      if (status) {
+        status.innerHTML = `
+          <strong>Inquiry sent successfully.</strong><br>
+          Thank you. We will review your request and respond within 1 business day.
+        `;
+        status.style.display = 'block';
       }
-    } catch (err) {
-      if (status) status.textContent = 'Network error. Please try again later.';
+
+      // Блокируем кнопку, чтобы не отправляли повторно
+      const submitBtn = form.querySelector('button[type="submit"]');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sent ✓';
+      }
+
+      form.reset();
+      form.classList.remove('was-validated'); // убрать красное после успеха
+    } else {
+      if (status) {
+        status.textContent = 'Submission failed. Please try again or email us at info@globalsolutions.lv.';
+      }
     }
-  });
+  } catch (err) {
+    if (status) {
+      status.textContent = 'Network error. Please try again later.';
+    }
+  }
 });
+
 </script>
             
 <!--Start of Tawk.to Script-->
