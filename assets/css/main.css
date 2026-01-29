@@ -3940,31 +3940,32 @@ section,
   box-shadow: none;
 }
 /* =========================
-   Checkbox validation (B2B confirm)
+   Checkbox validation (B2B confirm) — SINGLE outer highlight
    ========================= */
 
-/* do nothing before submit */
-#contact form:not(.was-validated) input[type="checkbox"]:invalid {
-  outline: none;
+/* ничего не подсвечиваем до submit */
+#contact form:not(.was-validated) .b2b-confirm {
+  border-color: transparent;
+  box-shadow: none;
+  background: transparent;
 }
 
-/* highlight checkbox ROW after submit */
-#contact form.was-validated input[type="checkbox"]:invalid {
-  outline: none;
-}
-
-/* highlight the container */
-#contact form.was-validated input[type="checkbox"]:invalid
-  + span,
-#contact form.was-validated .b2b-confirm:has(input[type="checkbox"]:invalid) {
-  border: 1px solid rgba(220, 53, 69, 0.5);
-  background-color: rgba(220, 53, 69, 0.05);
-  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.12);
-  border-radius: 6px;
+/* подсветка только контейнера, когда JS повесит .is-invalid */
+#contact form.was-validated .b2b-confirm.is-invalid {
+  border: 1px solid rgba(220, 53, 69, 0.45);
+  background-color: rgba(220, 53, 69, 0.04);
+  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.10);
+  border-radius: 8px;
   padding: 10px 12px;
 }
 
-/* optional: red text */
-#contact form.was-validated .b2b-confirm:has(input[type="checkbox"]:invalid) span {
-  color: #b02a37;
+/* убираем любые "внутренние" обводки у самого checkbox */
+#contact form.was-validated .b2b-confirm.is-invalid input[type="checkbox"] {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* слегка выделяем текст (без рамок!) */
+#contact form.was-validated .b2b-confirm.is-invalid span {
+  color: rgba(176, 42, 55, 0.95);
 }
