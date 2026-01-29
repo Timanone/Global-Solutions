@@ -1719,6 +1719,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
+    
+    // Проверка валидации + автоскролл
+    if (!form.checkValidity()) {
+      const firstInvalid = form.querySelector(':invalid');
+
+      if (firstInvalid) {
+        firstInvalid.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+
+        setTimeout(() => {
+          firstInvalid.focus();
+        }, 300);
+      }
+
+      return; // ❗ важно: дальше форму НЕ отправляем
+    }
 
     status.style.display = 'block';
     status.textContent = 'Sending...';
