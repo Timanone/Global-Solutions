@@ -4037,72 +4037,86 @@ section,
 
 /* =========================
    Unified field styling (inputs + selects + textarea)
-   Same base look, same "filled" look
+   One base look + one filled look
+   (DOES NOT TOUCH your submit validation logic)
    ========================= */
 
-/* 1) One base look for ALL fields (wrapper carries border + fill) */
+/* 1) Base look for ALL fields (same as form background) */
 #contact .input-with-icon{
-  background: rgba(255, 255, 255, 0.10) !important;
-  border: 1px solid rgba(11, 51, 86, 0.28) !important; /* base border */
+  background: #9fc5e8 !important; /* base = form fill */
+  border: 1px solid rgba(11, 51, 86, 0.18) !important; /* мягкая рамка */
   border-radius: 10px !important;
+  box-shadow: none !important;
   transition: background-color .18s ease, border-color .18s ease, box-shadow .18s ease;
 }
 
-/* Make actual controls transparent so they never fight with wrapper */
+/* Make actual controls transparent so wrapper always controls the look */
 #contact .input-with-icon .form-control{
   background: transparent !important;
   border: 0 !important;
   box-shadow: none !important;
+  color: rgba(11, 51, 86, 0.65) !important; /* одинаковый цвет текста в пустом состоянии */
 }
 
-/* Optional: unify icons color */
+/* Placeholder — same color as empty text (so everything looks uniform) */
+#contact .input-with-icon .form-control::placeholder{
+  color: rgba(11, 51, 86, 0.65) !important;
+  opacity: 1 !important;
+}
+
+/* Icons: same tone in default/empty state */
 #contact .input-with-icon i{
-  opacity: .75;
+  opacity: .65;
 }
 
-/* 2) "Filled" state — apply uniformly
-   - inputs/textareas: not placeholder-shown
-   - required selects: valid (i.e., user picked non-empty option)
+/* 2) Hover / Focus — show shadow while interacting */
+#contact .input-with-icon:hover,
+#contact .input-with-icon:focus-within{
+  border-color: rgba(30, 157, 225, 0.55) !important;
+  box-shadow: 0 0 0 3px rgba(30, 157, 225, 0.14) !important;
+}
+
+/* 3) Filled state — lighter background after user entered/selected
+   Shadow must NOT stay after user filled and left the field
 */
 #contact .input-with-icon:has(input.form-control:not(:placeholder-shown)),
 #contact .input-with-icon:has(textarea.form-control:not(:placeholder-shown)),
 #contact .input-with-icon:has(select.form-control:required:valid){
-  background: rgba(255, 255, 255, 0.16) !important;
-  border-color: rgba(30, 157, 225, 0.55) !important; /* slight brand accent */
+  background: rgba(177, 224, 254, 0.515) !important; /* light after fill */
+  border-color: rgba(30, 157, 225, 0.40) !important;
+  box-shadow: none !important; /* важно: тень пропадает */
 }
 
-/* 3) Focus — same behavior everywhere */
-#contact .input-with-icon:has(.form-control:focus){
-  border-color: rgba(30, 157, 225, 0.80) !important;
-  box-shadow: 0 0 0 3px rgba(30, 157, 225, 0.14) !important;
-}
-
-/* 4) Keep your validation logic: red ONLY after submit */
-#contact form.was-validated .input-with-icon:has(.form-control:invalid){
-  border-color: rgba(220, 53, 69, 0.75) !important;
-  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.14) !important;
-}
-
-/* =========================
-   Select placeholder vs filled state
-   ========================= */
-
-/* 1) Placeholder look for EMPTY select */
-#contact select.form-control:required:invalid {
-  color: rgba(11, 51, 86, 0.45) !important; /* same tone as placeholders */
-}
-
-/* also dim icon */
-#contact .input-with-icon:has(select.form-control:required:invalid) i {
-  opacity: 0.45;
-}
-
-/* 2) Normal text when value is chosen */
-#contact select.form-control:required:valid {
+/* Filled text a bit stronger (only after fill) */
+#contact .input-with-icon:has(input.form-control:not(:placeholder-shown)) .form-control,
+#contact .input-with-icon:has(textarea.form-control:not(:placeholder-shown)) .form-control,
+#contact .input-with-icon:has(select.form-control:required:valid) .form-control{
   color: rgba(11, 51, 86, 0.95) !important;
 }
 
-/* icon back to normal */
-#contact .input-with-icon:has(select.form-control:required:valid) i {
-  opacity: 0.85;
+/* Filled icon a bit stronger */
+#contact .input-with-icon:has(input.form-control:not(:placeholder-shown)) i,
+#contact .input-with-icon:has(textarea.form-control:not(:placeholder-shown)) i,
+#contact .input-with-icon:has(select.form-control:required:valid) i{
+  opacity: .85;
+}
+
+/* =========================
+   Select placeholder vs filled state (uniform)
+   ========================= */
+
+/* IMPORTANT:
+   Empty select should look same as other empty fields (same text tone)
+*/
+#contact select.form-control:required:invalid{
+  color: rgba(11, 51, 86, 0.65) !important;
+}
+
+/* =========================
+   Keep your validation logic: red ONLY after submit
+   (DON'T TOUCH)
+   ========================= */
+#contact form.was-validated .input-with-icon:has(.form-control:invalid){
+  border-color: rgba(220, 53, 69, 0.75) !important;
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.14) !important;
 }
