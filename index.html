@@ -1502,8 +1502,8 @@
 
                   <div id="formStatus" class="form-status" style="display:none;"></div>
 
-<div class="col-12 text-center">
-  <button type="submit" class="btn btn-primary btn-submit">SUBMIT INQUIRY</button>
+<div class="col-12 text-center" id="submitWrap">
+  <button type="submit" class="btn btn-primary btn-submit" id="submitBtn">SUBMIT INQUIRY</button>
 </div>
 
 <div class="col-12">
@@ -1714,32 +1714,29 @@
 document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('inquiryForm');
   const status = document.getElementById('formStatus');
-
   if (!form) return;
-  
+
   const b2bCheckbox = form.querySelector('input[name="b2b_confirm"]');
   const b2bWrap = form.querySelector('.b2b-confirm');
+  const submitWrap = document.getElementById('submitWrap');
+  const submitBtn = document.getElementById('submitBtn') || form.querySelector('button[type="submit"], input[type="submit"]');
 
   function syncB2BInvalidState() {
     if (!b2bCheckbox || !b2bWrap) return;
-
-    // подсвечиваем только после submit (когда есть was-validated)
     const shouldShow = form.classList.contains('was-validated');
-    const isValid = b2bCheckbox.checkValidity(); // true, если отмечен (required)
-
+    const isValid = b2bCheckbox.checkValidity();
     if (shouldShow && !isValid) b2bWrap.classList.add('is-invalid');
     else b2bWrap.classList.remove('is-invalid');
   }
 
-  // когда пользователь ставит/снимает галочку — обновляем подсветку
-  if (b2bCheckbox) {
-    b2bCheckbox.addEventListener('change', syncB2BInvalidState);
-  }
+  if (b2bCheckbox) b2bCheckbox.addEventListener('change', syncB2BInvalidState);
 
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
 
-    // включаем "режим подсветки" только после нажатия Submit
+    // защита от повторной отправки после успеха
+    if (form.dataset.submitted === 'true') return;
+
     form.classList.add('was-validated');
     syncB2BInvalidState();
 
@@ -1747,8 +1744,15 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!form.checkValidity()) {
       const firstInvalid = form.querySelector(':invalid');
       if (firstInvalid) firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      syncB2BInvalidState(); 
+      syncB2BInvalidState();
       return;
+    }
+
+    // блокируем кнопку на время отправки
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      if (submitBtn.tagName.toLowerCase() === 'button') submitBtn.textContent = 'Sending...';
+      else submitBtn.value = 'Sending...';
     }
 
     if (status) {
@@ -1766,15 +1770,49 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       if (response.ok) {
-        if (status) status.textContent = 'Thank you! Your inquiry has been sent.';
+        // фиксируем успешную отправку
+        form.dataset.submitted = 'true';
+
+        // success-блок вместо кнопки (как договаривались)
+        if (submitWrap) {
+          submitWrap.innerHTML = `
+            <div class="form-status-success" role="status" aria-live="polite">
+              <strong>Inquiry sent successfully.</strong><br>
+              Thank you. We will review your request and respond within <strong>1 business day</strong>.
+            </div>
+          `;
+        }
+
+        // можно оставить status как дублирующую строку или убрать:
+        if (status) {
+          status.style.display = 'none';
+          status.textContent = '';
+        }
+
+        // очищаем поля (визуально)
         form.reset();
+
+        // убираем подсветку ошибок
         if (b2bWrap) b2bWrap.classList.remove('is-invalid');
-        form.classList.remove('was-validated'); // убрать красное после успеха
+        form.classList.remove('was-validated');
+
+        return;
       } else {
+        // если не ок — возвращаем кнопку
         if (status) status.textContent = 'Submission failed. Please try again or email us at info@globalsolutions.lv.';
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          if (submitBtn.tagName.toLowerCase() === 'button') submitBtn.textContent = 'SUBMIT INQUIRY';
+          else submitBtn.value = 'SUBMIT INQUIRY';
+        }
       }
     } catch (err) {
       if (status) status.textContent = 'Network error. Please try again later.';
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        if (submitBtn.tagName.toLowerCase() === 'button') submitBtn.textContent = 'SUBMIT INQUIRY';
+        else submitBtn.value = 'SUBMIT INQUIRY';
+      }
     }
   });
 });
