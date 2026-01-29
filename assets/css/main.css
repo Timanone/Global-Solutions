@@ -3969,13 +3969,27 @@ section,
 #contact form.was-validated .b2b-confirm.is-invalid span {
   color: rgba(176, 42, 55, 0.95);
 }
-.form-status-success{
-  margin-top: 6px;
+/* =========================
+   Form success message (brand style)
+   ========================= */
+
+#contact .form-status-success {
+  margin-top: 10px;
   display: inline-block;
   text-align: center;
-  padding: 12px 14px;
+  padding: 14px 18px;
   border-radius: 10px;
-  background: rgba(25, 135, 84, 0.08);
-  border: 1px solid rgba(25, 135, 84, 0.22);
-  line-height: 1.35;
+
+  background-color: rgba(30, 157, 225, 0.08); /* #1e9de1 */
+  border: 1px solid rgba(30, 157, 225, 0.55);
+  color: #0b3a5a;
+
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+#contact .form-status-success strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #1e9de1;
 }
