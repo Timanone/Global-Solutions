@@ -4034,3 +4034,51 @@ section,
     transform: none;
   }
 }
+
+/* =========================
+   Unified field styling (inputs + selects + textarea)
+   Same base look, same "filled" look
+   ========================= */
+
+/* 1) One base look for ALL fields (wrapper carries border + fill) */
+#contact .input-with-icon{
+  background: rgba(255, 255, 255, 0.10) !important;
+  border: 1px solid rgba(11, 51, 86, 0.28) !important; /* base border */
+  border-radius: 10px !important;
+  transition: background-color .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+
+/* Make actual controls transparent so they never fight with wrapper */
+#contact .input-with-icon .form-control{
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Optional: unify icons color */
+#contact .input-with-icon i{
+  opacity: .75;
+}
+
+/* 2) "Filled" state — apply uniformly
+   - inputs/textareas: not placeholder-shown
+   - required selects: valid (i.e., user picked non-empty option)
+*/
+#contact .input-with-icon:has(input.form-control:not(:placeholder-shown)),
+#contact .input-with-icon:has(textarea.form-control:not(:placeholder-shown)),
+#contact .input-with-icon:has(select.form-control:required:valid){
+  background: rgba(255, 255, 255, 0.16) !important;
+  border-color: rgba(30, 157, 225, 0.55) !important; /* slight brand accent */
+}
+
+/* 3) Focus — same behavior everywhere */
+#contact .input-with-icon:has(.form-control:focus){
+  border-color: rgba(30, 157, 225, 0.80) !important;
+  box-shadow: 0 0 0 3px rgba(30, 157, 225, 0.14) !important;
+}
+
+/* 4) Keep your validation logic: red ONLY after submit */
+#contact form.was-validated .input-with-icon:has(.form-control:invalid){
+  border-color: rgba(220, 53, 69, 0.75) !important;
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.14) !important;
+}
