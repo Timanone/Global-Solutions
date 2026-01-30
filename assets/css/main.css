@@ -3930,7 +3930,6 @@ section,
 /* Slightly stronger when user focuses invalid field */
 #contact form.was-validated .form-control:invalid:focus {
   border-color: rgba(220, 53, 69, 0.75) !important;
-  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.14) !important;
 }
 
 /* If your inputs are inside .input-with-icon and it has a border too,
@@ -4118,7 +4117,6 @@ section,
    ========================= */
 #contact form.was-validated .input-with-icon:has(.form-control:invalid){
   border-color: rgba(220, 53, 69, 0.75) !important;
-  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.14) !important;
 }
 /* JS-assisted filled state for OPTIONAL selects (e.g., Trade Terms) */
 #contact .input-with-icon.is-filled {
