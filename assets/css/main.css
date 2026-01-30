@@ -4147,5 +4147,5 @@ section,
 
 /* Scroll offset for direct CTA jump to form */
 #submit-inquiry{
-  scroll-margin-top: 140px; /* при необходимости 100–140 */
+  scroll-margin-top: 160px; /* при необходимости 100–140 */
 }
