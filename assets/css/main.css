@@ -4072,8 +4072,8 @@ section,
 /* 2) Hover / Focus — show shadow while interacting */
 #contact .input-with-icon:hover,
 #contact .input-with-icon:focus-within{
-  border-color: rgba(11, 51, 86, 0.65) !important;
-  box-shadow: 0 0 0 3px rgba(11, 51, 86, 0.65) !important;
+  border-color: rgba(11, 51, 86, 0.18) !important;
+  box-shadow: 0 0 0 3px rgba(11, 51, 86, 0.18) !important;
 }
 
 /* 3) Filled state — lighter background after user entered/selected
