@@ -4086,6 +4086,22 @@ section,
   box-shadow: none !important;
 }
 
+/* =========================
+   B2B checkbox — filled state
+   Same behavior as other fields
+   ========================= */
+
+#contact .b2b-confirm:has(input[type="checkbox"]:checked){
+  background: rgba(177, 224, 254, 0.515) !important;
+  border-color: rgba(11, 51, 86, 0.18) !important;
+  box-shadow: none !important;
+}
+
+/* Optional: text slightly stronger when checked */
+#contact .b2b-confirm:has(input[type="checkbox"]:checked) label{
+  color: rgba(11, 51, 86, 0.95) !important;
+}
+
 /* Filled text a bit stronger (only after fill) */
 #contact .input-with-icon:has(input.form-control:not(:placeholder-shown)) .form-control,
 #contact .input-with-icon:has(textarea.form-control:not(:placeholder-shown)) .form-control,
