@@ -172,26 +172,25 @@ function toggleScrolled() {
     });
   });
 
-/**
- * Correct scrolling position upon page load for URLs containing hash links.
- * Run once; avoid repeated smooth-scroll loops that can cause "bounce".
- */
+  /**
+   * Correct scrolling position upon page load for URLs containing hash links.
+   */
 window.addEventListener('load', function () {
   if (!window.location.hash) return;
 
-  const target = document.querySelector(window.location.hash);
-  if (!target) return;
+  const targetId = window.location.hash;
+  let attempts = 0;
+  const maxAttempts = 20;
 
-  // Wait a tick for layout/preloader removal/AOS to settle
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      const scrollMarginTop = parseInt(getComputedStyle(target).scrollMarginTop || 0, 10) || 0;
-      const top = target.getBoundingClientRect().top + window.pageYOffset - scrollMarginTop;
+  const tryScroll = setInterval(() => {
+    const target = document.querySelector(targetId);
+    if (target) {
+      const scrollMarginTop = parseInt(getComputedStyle(target).scrollMarginTop || 0, 10);
 
-      window.scrollTo({ top, behavior: 'smooth' });
-    });
-  });
-});
+      window.scrollTo({
+        top: target.offsetTop - scrollMarginTop,
+        behavior: 'smooth'
+      });
 
       clearInterval(tryScroll);
     }
