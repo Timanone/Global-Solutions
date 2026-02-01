@@ -165,26 +165,46 @@
   /**
    * Correct scrolling position upon page load for URLs containing hash links.
    */
-  window.addEventListener('load', function(e) {
+  window.addEventListener('load', function() {
     const storedScrollTarget = sessionStorage.getItem('scrollto-target');
+    let hash = window.location.hash;
+
     if (storedScrollTarget) {
       sessionStorage.removeItem('scrollto-target');
-      if (!window.location.hash) {
-        window.location.hash = storedScrollTarget;
+      if (!hash) {
+        hash = storedScrollTarget;
+        window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}${hash}`);
       }
     }
-    if (window.location.hash) {
-      if (document.querySelector(window.location.hash)) {
-        setTimeout(() => {
-          let section = document.querySelector(window.location.hash);
-          let scrollMarginTop = getComputedStyle(section).scrollMarginTop;
-          window.scrollTo({
-            top: section.offsetTop - parseInt(scrollMarginTop),
-            behavior: 'smooth'
-          });
-        }, 100);
-      }
+
+    if (!hash) {
+      return;
     }
+
+    const target = document.querySelector(hash);
+    if (!target) {
+      return;
+    }
+
+    const hasScrollRestoration = 'scrollRestoration' in window.history;
+    const previousScrollRestoration = hasScrollRestoration ? window.history.scrollRestoration : null;
+    if (hasScrollRestoration) {
+      window.history.scrollRestoration = 'manual';
+    }
+
+    requestAnimationFrame(() => {
+      const scrollMarginTop = parseInt(getComputedStyle(target).scrollMarginTop, 10) || 0;
+      window.scrollTo({
+        top: target.offsetTop - scrollMarginTop,
+        behavior: 'smooth'
+      });
+
+      if (hasScrollRestoration) {
+        window.setTimeout(() => {
+          window.history.scrollRestoration = previousScrollRestoration || 'auto';
+        }, 0);
+      }
+    });
   });
 
   /**
