@@ -171,38 +171,8 @@ function toggleScrolled() {
       faqItem.parentNode.classList.toggle('faq-active');
     });
   });
-
-  /**
-   * Correct scrolling position upon page load for URLs containing hash links.
-   */
-window.addEventListener('load', function () {
-  if (!window.location.hash) return;
-
-  const targetId = window.location.hash;
-  let attempts = 0;
-  const maxAttempts = 20;
-
-  const tryScroll = setInterval(() => {
-    const target = document.querySelector(targetId);
-    if (target) {
-      const scrollMarginTop = parseInt(getComputedStyle(target).scrollMarginTop || 0, 10);
-
-      window.scrollTo({
-        top: target.offsetTop - scrollMarginTop,
-        behavior: 'smooth'
-      });
-
-      clearInterval(tryScroll);
-    }
-
-    attempts++;
-    if (attempts >= maxAttempts) {
-      clearInterval(tryScroll);
-    }
-  }, 100);
-});
-
-  /**
+  
+    /**
    * Navmenu Scrollspy
    */
   let navmenulinks = document.querySelectorAll('.navmenu a');
@@ -213,15 +183,36 @@ window.addEventListener('load', function () {
       let section = document.querySelector(navmenulink.hash);
       if (!section) return;
       let position = window.scrollY + 200;
-      if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
-        document.querySelectorAll('.navmenu a.active').forEach(link => link.classList.remove('active'));
+      if (
+        position >= section.offsetTop &&
+        position <= (section.offsetTop + section.offsetHeight)
+      ) {
+        document
+          .querySelectorAll('.navmenu a.active')
+          .forEach(link => link.classList.remove('active'));
         navmenulink.classList.add('active');
       } else {
         navmenulink.classList.remove('active');
       }
-    })
+    });
   }
-  window.addEventListener('load', navmenuScrollspy);
-  document.addEventListener('scroll', navmenuScrollspy);
 
-})();
+  window.addEventListener('load', navmenulinks.length ? navmenuScrollspy : () => {});
+  document.addEventListener('scroll', navmenulinks.length ? navmenuScrollspy : () => {});
+
+  /**
+   * Cross-page hash scroll fix
+   * (from legal pages to index.html#submit-inquiry)
+   */
+  window.addEventListener('load', () => {
+    const hash = window.location.hash;
+    if (!hash) return;
+
+    setTimeout(() => {
+      const el = document.querySelector(hash);
+      if (!el) return;
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 250);
+  });
+
+})(); 
