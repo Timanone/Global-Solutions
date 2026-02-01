@@ -41,6 +41,28 @@
   });
 
   /**
+   * Close mobile nav on outside click
+   */
+  document.addEventListener('click', (event) => {
+    const navmenu = document.querySelector('#navmenu');
+    const navmenuList = navmenu ? navmenu.querySelector('ul') : null;
+
+    if (!document.body.classList.contains('mobile-nav-active')) {
+      return;
+    }
+
+    if (!navmenuList || navmenuList.contains(event.target)) {
+      return;
+    }
+
+    if (mobileNavToggleBtn && mobileNavToggleBtn.contains(event.target)) {
+      return;
+    }
+
+    mobileNavToogle();
+  });
+
+  /**
    * Toggle mobile nav dropdowns
    */
   document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
@@ -152,6 +174,29 @@
   }
 
   window.addEventListener("load", initSwiper);
+
+  /**
+   * Disable hero video on small screens to avoid mobile autoplay restrictions
+   */
+  const heroVideo = document.querySelector('.hero-background video');
+  if (heroVideo) {
+    const mobileVideoQuery = window.matchMedia('(max-width: 768px)');
+
+    const updateHeroVideo = () => {
+      if (mobileVideoQuery.matches) {
+        heroVideo.pause();
+        heroVideo.setAttribute('preload', 'none');
+      } else {
+        heroVideo.setAttribute('preload', 'metadata');
+        heroVideo.play().catch(() => {});
+      }
+    };
+
+    updateHeroVideo();
+    if (typeof mobileVideoQuery.addEventListener === 'function') {
+      mobileVideoQuery.addEventListener('change', updateHeroVideo);
+    }
+  }
 
   /**
    * Frequently Asked Questions Toggle
