@@ -27,16 +27,27 @@
   <link href="assets/css/main.css" rel="stylesheet">
 
   <style>
-    body.policy-page .header {
-      background-color: rgba(0, 0, 0, 0.9);
-      box-shadow: 0 0 18px rgba(0, 0, 0, 0.1);
-      --background-color: rgba(0, 0, 0, 0.9);
+    body.legal-page:not(.scrolled) #header .branding {
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 2px 18px rgba(0, 0, 0, 0.12);
+    }
+
+    body.legal-page:not(.scrolled) #header .navmenu a {
+      color: #ffffff;
+    }
+
+    body.legal-page:not(.scrolled) #header .navmenu a:hover,
+    body.legal-page:not(.scrolled) #header .navmenu a.active {
+      color: #ffffff;
+      opacity: 0.85;
     }
   </style>
 
 </head>
 
-<body class="index-page policy-page">
+<body class="index-page legal-page">
 
   <header id="header" class="header fixed-top">
 
