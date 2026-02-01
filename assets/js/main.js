@@ -166,6 +166,13 @@
    * Correct scrolling position upon page load for URLs containing hash links.
    */
   window.addEventListener('load', function(e) {
+    const storedScrollTarget = sessionStorage.getItem('scrollto-target');
+    if (storedScrollTarget) {
+      sessionStorage.removeItem('scrollto-target');
+      if (!window.location.hash) {
+        window.location.hash = storedScrollTarget;
+      }
+    }
     if (window.location.hash) {
       if (document.querySelector(window.location.hash)) {
         setTimeout(() => {
