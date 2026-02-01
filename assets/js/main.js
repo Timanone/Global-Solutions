@@ -193,7 +193,6 @@ window.addEventListener('load', function () {
       });
 
       clearInterval(tryScroll);
-      return;
     }
 
     attempts++;
