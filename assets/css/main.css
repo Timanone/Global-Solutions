@@ -176,11 +176,31 @@ h6 {
   color: var(--contrast-color);
 }
 
+.header .topbar .contact-info .topbar-linkedin {
+  color: var(--contrast-color);
+  gap: 6px;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.header .topbar .contact-info .topbar-linkedin i {
+  font-size: 16px;
+}
+
+.header .topbar .contact-info .topbar-linkedin .linkedin-label {
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
 @media (max-width: 575px) {
 
   .header .topbar .contact-info i a,
   .header .topbar .contact-info i span {
     font-size: 13px;
+  }
+
+  .header .topbar .contact-info .topbar-linkedin .linkedin-label {
+    display: none;
   }
 }
 
@@ -337,7 +357,7 @@ body.scrolled .header{
 # Navigation Menu
 --------------------------------------------------------------*/
 /* Navmenu - Desktop */
-@media (min-width: 1200px) {
+@media (min-width: 993px) {
   .navmenu {
     padding: 0;
   }
@@ -444,7 +464,7 @@ body.scrolled .header{
 }
 
 /* Navmenu - Mobile */
-@media (max-width: 1199px) {
+@media (max-width: 992px) {
   .mobile-nav-toggle {
     color: var(--nav-color);
     font-size: 28px;
@@ -1197,6 +1217,19 @@ section,
 @media (max-width: 768px) {
   .hero .hero-text .hero-description {
     font-size: 16px;
+    line-height: 1.8;
+    max-width: 22rem;
+    opacity: 0.82;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero .hero-background {
+    background: url("../img/restaurant/showcase-6.webp") center/cover no-repeat;
+  }
+
+  .hero .hero-background video {
+    display: none;
   }
 }
 
@@ -1308,6 +1341,16 @@ section,
 @media (max-width: 768px) {
   #hero .scroll-indicator {
     bottom: 14px;
+  }
+
+  .hero .scroll-indicator .scroll-text {
+    font-size: 10px;
+    opacity: 0.55;
+  }
+
+  .hero .scroll-indicator .scroll-arrow i {
+    font-size: 16px;
+    opacity: 0.6;
   }
 }
 
