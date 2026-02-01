@@ -4179,3 +4179,15 @@ body.legal-page.scrolled .logo-icon {
   opacity: 1;
   visibility: visible;
 }
+
+/* === Legal pages: match Start an Inquiry button color === */
+body.legal-page .btn.btn-primary {
+  background-color: #1174A5;   /* цвет Start an Inquiry */
+  border-color: #1174A5;
+}
+
+body.legal-page .btn.btn-primary:hover,
+body.legal-page .btn.btn-primary:focus {
+  background-color: #0e5f87;   /* hover как на главной */
+  border-color: #0e5f87;
+}
