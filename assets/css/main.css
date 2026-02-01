@@ -4149,3 +4149,33 @@ section,
 #submit-inquiry{
   scroll-margin-top: 200px; /* при необходимости 100–140 */
 }
+/* ================================
+   LEGAL PAGES HEADER FIX
+   ================================ */
+
+body.legal-page #header {
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(10px);
+}
+
+/* FULL logo visible before scroll */
+body.legal-page:not(.scrolled) .logo-full {
+  opacity: 1;
+  visibility: visible;
+}
+
+body.legal-page:not(.scrolled) .logo-icon {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Switch to icon AFTER scroll (same as main page) */
+body.legal-page.scrolled .logo-full {
+  opacity: 0;
+  visibility: hidden;
+}
+
+body.legal-page.scrolled .logo-icon {
+  opacity: 1;
+  visibility: visible;
+}
