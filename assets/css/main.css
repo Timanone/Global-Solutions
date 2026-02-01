@@ -294,14 +294,14 @@ body.scrolled .header .logo .logo-icon{
 }
 
 /* Header background/shadow on scroll */
+/* ===== MAIN HEADER — match LEGAL pages ===== */
 body.scrolled .header{
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(10px);
   box-shadow: 0 0 18px rgba(0, 0, 0, 0.1);
-}
 
-/* Keep your existing variable hook (optional, but consistent) */
-body.scrolled .header{
-  --background-color: rgba(0, 0, 0, 0.9);
+  /* keep variable in sync */
+  --background-color: rgba(0, 0, 0, 0.65);
 }
 
 /* ===== MOBILE ===== */
