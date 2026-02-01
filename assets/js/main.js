@@ -211,7 +211,7 @@ function toggleScrolled() {
     setTimeout(() => {
       const el = document.querySelector(hash);
       if (!el) return;
-      const extraOffset = 220; // <-- вот эту цифру будешь крутить
+      const extraOffset = 280; // <-- вот эту цифру будешь крутить
 const top = el.getBoundingClientRect().top + window.pageYOffset - extraOffset;
 window.scrollTo({ top, behavior: 'smooth' });
     }, 600);
