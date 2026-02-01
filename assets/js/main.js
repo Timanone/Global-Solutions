@@ -12,7 +12,6 @@ function toggleScrolled() {
   // LEGAL PAGES — always dark header
   if (selectBody.classList.contains('legal-page')) {
     selectBody.classList.add('scrolled');
-    return;
   }
 
   // DEFAULT BEHAVIOR
