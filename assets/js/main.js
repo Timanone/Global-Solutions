@@ -175,20 +175,32 @@ function toggleScrolled() {
   /**
    * Correct scrolling position upon page load for URLs containing hash links.
    */
-  window.addEventListener('load', function(e) {
-    if (window.location.hash) {
-      if (document.querySelector(window.location.hash)) {
-        setTimeout(() => {
-          let section = document.querySelector(window.location.hash);
-          let scrollMarginTop = getComputedStyle(section).scrollMarginTop;
-          window.scrollTo({
-            top: section.offsetTop - parseInt(scrollMarginTop),
-            behavior: 'smooth'
-          });
-        }, 100);
-      }
+window.addEventListener('load', function () {
+  if (!window.location.hash) return;
+
+  const targetId = window.location.hash;
+  let attempts = 0;
+  const maxAttempts = 20;
+
+  const tryScroll = setInterval(() => {
+    const target = document.querySelector(targetId);
+    if (target) {
+      const scrollMarginTop = parseInt(getComputedStyle(target).scrollMarginTop || 0, 10);
+
+      window.scrollTo({
+        top: target.offsetTop - scrollMarginTop,
+        behavior: 'smooth'
+      });
+
+      clearInterval(tryScroll);
     }
-  });
+
+    attempts++;
+    if (attempts >= maxAttempts) {
+      clearInterval(tryScroll);
+    }
+  }, 100);
+});
 
   /**
    * Navmenu Scrollspy
