@@ -27,16 +27,23 @@
   <link href="assets/css/main.css" rel="stylesheet">
 
   <style>
-    body.policy-page .header {
-      background-color: rgba(0, 0, 0, 0.9);
-      box-shadow: 0 0 18px rgba(0, 0, 0, 0.1);
-      --background-color: rgba(0, 0, 0, 0.9);
+    body.legal-page #header .branding {
+      background: rgba(0, 0, 0, 0.65);
+      box-shadow: 0 0 18px rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    body.legal-page #header .branding .navmenu a,
+    body.legal-page #header .branding .navmenu a:focus,
+    body.legal-page #header .branding .navmenu a:hover {
+      color: #ffffff;
     }
   </style>
 
 </head>
 
-<body class="index-page policy-page">
+<body class="index-page legal-page">
 
   <header id="header" class="header fixed-top">
 
