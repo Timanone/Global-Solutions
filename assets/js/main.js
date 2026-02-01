@@ -166,18 +166,55 @@
    * Correct scrolling position upon page load for URLs containing hash links.
    */
   window.addEventListener('load', function(e) {
-    if (window.location.hash) {
-      if (document.querySelector(window.location.hash)) {
-        setTimeout(() => {
-          let section = document.querySelector(window.location.hash);
-          let scrollMarginTop = getComputedStyle(section).scrollMarginTop;
-          window.scrollTo({
-            top: section.offsetTop - parseInt(scrollMarginTop),
-            behavior: 'smooth'
-          });
-        }, 100);
-      }
+    if (!window.location.hash) {
+      return;
     }
+
+    const scrollTarget = window.location.hash;
+    const restoreScroll = () => {
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'auto';
+      }
+    };
+
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+
+    const scrollToTarget = () => {
+      const section = document.querySelector(scrollTarget);
+      if (!section) {
+        return false;
+      }
+      const scrollMarginTop = parseInt(getComputedStyle(section).scrollMarginTop) || 0;
+      window.scrollTo({
+        top: section.offsetTop - scrollMarginTop,
+        behavior: 'smooth'
+      });
+      return true;
+    };
+
+    if (scrollToTarget()) {
+      setTimeout(restoreScroll, 400);
+      return;
+    }
+
+    const observer = new MutationObserver(() => {
+      if (scrollToTarget()) {
+        observer.disconnect();
+        setTimeout(restoreScroll, 400);
+      }
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+
+    setTimeout(() => {
+      observer.disconnect();
+      restoreScroll();
+    }, 2000);
   });
 
   /**
