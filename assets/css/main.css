@@ -4633,3 +4633,30 @@ body.mobile-nav-active .navmenu ul,
   border-radius: 2px;
   transition: all 0.3s ease;
 }
+
+/* HERO: mobile image instead of video */
+.hero-image-mobile {
+  display: none;
+}
+
+@media (max-width: 991px) {
+  .hero-video {
+    display: none;
+  }
+
+  .hero-image-mobile {
+    display: block;
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(
+        rgba(0, 0, 0, 0.45),
+        rgba(0, 0, 0, 0.45)
+      ),
+      url("../img/restaurant/hero-photo.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+  }
+}
