@@ -4209,3 +4209,56 @@ html, body {
 *:not(.bi):not(.fa):not(.fas):not(.far):not(.fab) {
   font-family: "Montserrat", sans-serif !important;
 }
+
+/* ================================
+   FIX: Mobile hamburger must NOT appear on desktop
+   Breakpoint: 1200px (max-width: 1199px)
+   Paste at the END of main.css
+================================ */
+
+/* 1) Desktop defaults */
+button.mobile-nav-toggle {
+  display: none !important;   /* hide hamburger on desktop */
+}
+
+#navmenu {
+  display: flex;              /* keep desktop menu visible */
+  align-items: center;
+}
+
+#navmenu ul {
+  display: flex;
+  gap: 22px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* 2) Mobile behavior */
+@media (max-width: 1199px) {
+  button.mobile-nav-toggle {
+    display: inline-flex !important; /* show hamburger on mobile/tablet */
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    z-index: 9999;
+  }
+
+  /* hide menu on mobile until opened (your JS usually toggles .mobile-nav-active on body) */
+  #navmenu {
+    display: none;
+  }
+
+  body.mobile-nav-active #navmenu {
+    display: block;
+  }
+
+  body.mobile-nav-active #navmenu ul {
+    display: block;
+    gap: 0;
+  }
+}
