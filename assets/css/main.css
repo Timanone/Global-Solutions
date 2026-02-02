@@ -4454,3 +4454,108 @@ button.mobile-nav-toggle {
 
 }
 
+/* ============================
+   MOBILE MENU FIX (GLOBAL)
+   - hamburger (3 lines)
+   - menu opens correctly after scroll
+   Paste at END of main.css
+============================ */
+
+/* 1) Make sure header is always above page content (menu layer safety) */
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9997;
+}
+
+/* 2) Hamburger button: 3 visible lines */
+.mobile-nav-toggle {
+  display: none; /* default hidden on desktop; template may override */
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  z-index: 9999; /* must sit above menu panel */
+}
+
+.mobile-nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  margin: 5px 0;
+  background: #ffffff;
+  border-radius: 2px;
+  transition: transform .25s ease, opacity .2s ease;
+}
+
+/* Show hamburger only on mobile */
+@media (max-width: 1199px) {
+  .mobile-nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
+}
+
+/* 3) Mobile menu panel: when active -> fixed overlay, works after scroll */
+@media (max-width: 1199px) {
+  /* Default hidden state */
+  #navmenu {
+    position: static;
+  }
+
+  /* When menu is opened (template usually adds this class to <body>) */
+  body.mobile-nav-active #navmenu {
+    position: fixed;
+    inset: 0;                 /* top/right/bottom/left = 0 */
+    z-index: 9998;            /* under button, above everything else */
+    display: block;
+    background: rgba(0, 0, 0, 0.82);
+    padding: 90px 24px 24px;  /* top padding so links start below header */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  body.mobile-nav-active #navmenu > ul {
+    display: block;
+    padding: 0;
+    margin: 0;
+  }
+
+  body.mobile-nav-active #navmenu > ul > li {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+
+  body.mobile-nav-active #navmenu > ul > li > a {
+    color: #ffffff !important;
+    font-size: 28px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  /* Optional: reduce link hover weirdness */
+  body.mobile-nav-active #navmenu a:hover {
+    opacity: .9;
+  }
+
+  /* Lock background scroll when menu open */
+  body.mobile-nav-active {
+    overflow: hidden;
+    touch-action: none;
+  }
+}
+
+/* 4) Animate hamburger into X when menu is open (only visual) */
+@media (max-width: 1199px) {
+  body.mobile-nav-active .mobile-nav-toggle span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  body.mobile-nav-active .mobile-nav-toggle span:nth-child(2) {
+    opacity: 0;
+  }
+  body.mobile-nav-active .mobile-nav-toggle span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+}
