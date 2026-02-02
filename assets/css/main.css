@@ -4262,3 +4262,20 @@ button.mobile-nav-toggle {
     gap: 0;
   }
 }
+
+/* Topbar visibility fix */
+.topbar .contact-info,
+.topbar .contact-info a,
+.topbar .contact-info span,
+.topbar .contact-info .topbar-phone {
+  opacity: 1 !important;
+  color: #fff !important;
+}
+
+.topbar .contact-info a {
+  text-decoration: none;
+}
+
+.topbar .contact-info a:hover {
+  text-decoration: underline;
+}
