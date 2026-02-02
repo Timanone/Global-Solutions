@@ -1353,6 +1353,47 @@ section,
   position: relative !important;
 }
 
+/* ===== MOBILE HERO: response text + scroll indicator ===== */
+@media (max-width: 768px) {
+  /* Поднимаем блок под кнопками */
+  main > section:first-child .hero-meta,
+  main > section:first-child .hero-note,
+  main > section:first-child .hero-response,
+  main > section:first-child .response-note {
+    margin-top: 6px !important;
+    margin-bottom: 14px !important;
+    opacity: 0.9;
+  }
+
+  /* Если у тебя "Response within..." это просто <p> сразу после кнопок */
+  main > section:first-child .btn + p,
+  main > section:first-child .btn-group + p,
+  main > section:first-child .hero-buttons + p {
+    margin-top: 8px !important;
+    margin-bottom: 14px !important;
+  }
+
+  /* Scroll indicator: показываем, делаем компактнее и чуть ниже */
+  main > section:first-child .scroll-down,
+  main > section:first-child .scroll-indicator,
+  main > section:first-child .scroll-to-explore {
+    display: block !important;
+    margin-top: 6px !important;
+    font-size: 11px !important;
+    letter-spacing: 0.12em;
+    opacity: 0.75;
+  }
+
+  /* Стрелку делаем меньше (если это иконка/элемент внутри) */
+  main > section:first-child .scroll-down i,
+  main > section:first-child .scroll-indicator i,
+  main > section:first-child .scroll-to-explore i,
+  main > section:first-child .scroll-down svg,
+  main > section:first-child .scroll-indicator svg {
+    transform: scale(0.85);
+  }
+}
+
 /*--------------------------------------------------------------
 # About Section
 --------------------------------------------------------------*/
