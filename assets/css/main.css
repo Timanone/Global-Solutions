@@ -4558,3 +4558,53 @@ button.mobile-nav-toggle {
     transform: translateY(-7px) rotate(-45deg);
   }
 }
+
+/* ================================
+   MOBILE MENU FIX (after scroll)
+   Put this block at the VERY END of main.css
+================================== */
+
+/* 1) Ensure header wrappers do NOT clip the opened menu */
+.header,
+.header .branding,
+.header .branding .container,
+.header .topbar,
+.header .topbar .container {
+  overflow: visible !important;
+}
+
+/* 2) Keep the toggle always above everything */
+.mobile-nav-toggle {
+  position: relative !important;
+  z-index: 99999 !important;
+}
+
+/* 3) When mobile menu is active, make nav overlay fixed and full-screen
+   (we target multiple possible "active" states to be safe) */
+body.mobile-nav-active #navmenu,
+body.mobile-nav-active .navmenu,
+#navmenu.mobile-nav-active,
+.navmenu.mobile-nav-active {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 99990 !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  display: block !important;
+}
+
+/* 4) Menu content should not be clipped and should stack correctly */
+body.mobile-nav-active #navmenu ul,
+body.mobile-nav-active .navmenu ul,
+#navmenu.mobile-nav-active ul,
+.navmenu.mobile-nav-active ul {
+  max-height: none !important;
+}
+
+/* 5) Optional: if some "sticked/scrolled" header state changes z-index, keep header below opened menu */
+.header.fixed-top {
+  z-index: 9000; /* menu overlay is 99990+ */
+}
+
