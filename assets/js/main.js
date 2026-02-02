@@ -200,19 +200,39 @@ function toggleScrolled() {
   window.addEventListener('load', navmenulinks.length ? navmenuScrollspy : () => {});
   document.addEventListener('scroll', navmenulinks.length ? navmenuScrollspy : () => {});
 
-  /**
-   * Cross-page hash scroll fix
-   * (from legal pages to index.html#submit-inquiry)
-   */
-  window.addEventListener('load', () => {
+/**
+ * Cross-page hash scroll fix
+ * (from legal pages to index.html#submit-inquiry)
+ * Safe version: no syntax traps, no crashes
+ */
+(function () {
+  function scrollToHash() {
     const hash = window.location.hash;
-    if (!hash) return;
 
-    setTimeout(() => {
-      const el = document.querySelector(hash);
-      if (!el) return;
-      const extraOffset = 300; // <-- вот эту цифру будешь крутить
-const top = el.getBoundingClientRect().top + window.pageYOffset - extraOffset;
-window.scrollTo({ top, behavior: 'smooth' });
-    }, 600);
+    // Only react to real section anchors like #about, #contact, #submit-inquiry etc.
+    if (!hash || hash.length < 2) return;
+
+    // CSS.escape is not supported in some old browsers; safe fallback
+    const safeHash = (window.CSS && CSS.escape) ? CSS.escape(hash) : hash;
+
+    const el = document.querySelector(safeHash);
+    if (!el) return;
+
+    // Offset for fixed header (tweak if needed)
+    const extraOffset = 120;
+
+    const top = el.getBoundingClientRect().top + window.pageYOffset - extraOffset;
+
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+
+  window.addEventListener('load', () => {
+    // Wait for layout/fonts/AOS etc. to settle
+    setTimeout(scrollToHash, 350);
   });
+
+  // Optional: if user lands and then hash changes later
+  window.addEventListener('hashchange', () => {
+    setTimeout(scrollToHash, 50);
+  });
+})();
