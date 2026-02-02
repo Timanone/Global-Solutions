@@ -217,4 +217,34 @@ window.scrollTo({ top, behavior: 'smooth' });
     }, 600);
   });
 
+  // Force Hero video autoplay (last attempt)
+window.addEventListener('load', () => {
+  const v = document.querySelector('#hero video.hero-video');
+  if (!v) return;
+
+  v.muted = true;
+  v.playsInline = true;
+  v.setAttribute('muted', '');
+  v.setAttribute('playsinline', '');
+  v.setAttribute('webkit-playsinline', '');
+
+  const tryPlay = () => {
+    const p = v.play();
+    if (p && typeof p.catch === 'function') p.catch(() => {});
+  };
+
+  // immediate + delayed tries
+  tryPlay();
+  setTimeout(tryPlay, 300);
+
+  // allow after first user gesture anywhere
+  const kick = () => {
+    tryPlay();
+    document.removeEventListener('touchstart', kick);
+    document.removeEventListener('click', kick);
+  };
+  document.addEventListener('touchstart', kick, { passive: true });
+  document.addEventListener('click', kick, { passive: true });
+});
+
 })(); 
