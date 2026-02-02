@@ -4279,3 +4279,102 @@ button.mobile-nav-toggle {
 .topbar .contact-info a:hover {
   text-decoration: underline;
 }
+
+/* =========================
+   Mobile nav: show hamburger only on mobile
+   ========================= */
+
+/* default: desktop */
+.mobile-nav-toggle {
+  display: none;
+}
+
+/* make phone in topbar look like a link */
+.topbar-phone {
+  color: inherit;
+  text-decoration: none;
+}
+.topbar-phone:hover {
+  text-decoration: underline;
+}
+
+/* MOBILE */
+@media (max-width: 991.98px) {
+
+  /* show hamburger */
+  .mobile-nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    z-index: 10001;
+  }
+
+  /* hamburger lines */
+  .mobile-nav-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #fff;
+    margin: 4px 0;
+    transition: transform .2s ease, opacity .2s ease;
+  }
+
+  /* hide desktop menu on mobile by default */
+  #navmenu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    padding: 90px 20px 20px;
+    background: rgba(0,0,0,.92);
+    z-index: 10000;
+    overflow-y: auto;
+  }
+
+  #navmenu ul {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  #navmenu a {
+    font-size: 18px;
+    padding: 10px 0;
+  }
+
+  /* OPEN state */
+  body.mobile-nav-active #navmenu {
+    display: block;
+  }
+
+  /* animate hamburger to X when open */
+  body.mobile-nav-active .mobile-nav-toggle span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+  body.mobile-nav-active .mobile-nav-toggle span:nth-child(2) {
+    opacity: 0;
+  }
+  body.mobile-nav-active .mobile-nav-toggle span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+}
+
+/* =========================
+   Hero: note + scroll indicator (mobile adjustments)
+   ========================= */
+@media (max-width: 991.98px) {
+  .hero-note {
+    margin-top: 10px;
+    margin-bottom: 18px;
+  }
+
+  .scroll-indicator {
+    margin-top: 8px;
+    transform: scale(0.85);
+    opacity: 0.9;
+  }
+}
