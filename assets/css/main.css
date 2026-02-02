@@ -4607,4 +4607,29 @@ body.mobile-nav-active .navmenu ul,
 .header.fixed-top {
   z-index: 9000; /* menu overlay is 99990+ */
 }
+/* ================================
+   MOBILE HAMBURGER ICON — CLASSIC
+================================== */
+
+.mobile-nav-toggle {
+  width: 32px;
+  height: 22px;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  background: none;
+  border: 0;
+}
+
+/* сами полоски */
+.mobile-nav-toggle span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #ffffff; /* белые линии */
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
 
