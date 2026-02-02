@@ -4633,3 +4633,17 @@ body.mobile-nav-active .navmenu ul,
   border-radius: 2px;
   transition: all 0.3s ease;
 }
+
+/* HERO video = pure background, no UI */
+.hero-video {
+  pointer-events: none;
+}
+
+/* Try to kill browser UI overlays */
+.hero-video::-webkit-media-controls,
+.hero-video::-webkit-media-controls-panel,
+.hero-video::-webkit-media-controls-start-playback-button,
+.hero-video::-webkit-media-controls-play-button {
+  display: none !important;
+  opacity: 0 !important;
+}
