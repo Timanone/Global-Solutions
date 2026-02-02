@@ -4607,6 +4607,7 @@ body.mobile-nav-active .navmenu ul,
 .header.fixed-top {
   z-index: 9000; /* menu overlay is 99990+ */
 }
+
 /* ================================
    MOBILE HAMBURGER ICON — CLASSIC
 ================================== */
@@ -4633,3 +4634,19 @@ body.mobile-nav-active .navmenu ul,
   transition: all 0.3s ease;
 }
 
+/* === Disable iOS video play overlay on Hero === */
+.hero video::-webkit-media-controls {
+  display: none !important;
+}
+
+.hero video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+}
+
+.hero video::-webkit-media-controls-play-button {
+  display: none !important;
+}
+
+.hero video {
+  pointer-events: none;
+}
