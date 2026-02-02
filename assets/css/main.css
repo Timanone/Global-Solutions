@@ -4378,3 +4378,79 @@ button.mobile-nav-toggle {
     opacity: 0.9;
   }
 }
+
+/* =====================================================
+   MOBILE HEADER & HERO FIXES
+   ===================================================== */
+
+@media (max-width: 991.98px) {
+
+  /* 1) Hamburger icon = 3 bars */
+  .mobile-nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    z-index: 10001;
+  }
+
+  .mobile-nav-toggle span {
+    display: block;
+    width: 26px;
+    height: 2px;
+    background: #ffffff;
+    border-radius: 2px;
+    margin: 5px 0;
+  }
+
+  /* 2) Mobile menu links = white */
+  .mobile-nav-active #navmenu a,
+  .mobile-nav-active #navmenu a:focus,
+  .mobile-nav-active #navmenu a:hover {
+    color: #ffffff !important;
+  }
+
+  .mobile-nav-active #navmenu .active {
+    color: #ffffff !important;
+    opacity: 0.95;
+  }
+
+  /* 3) Hero spacing fixes */
+  #hero {
+    position: relative;
+    padding-bottom: 90px;
+  }
+
+  #hero .hero-note {
+    margin-top: 14px !important;
+    margin-bottom: 22px !important;
+    position: relative;
+    z-index: 2;
+  }
+
+  #hero .scroll-indicator {
+    position: absolute;
+    left: 50%;
+    bottom: 18px;
+    transform: translateX(-50%);
+    z-index: 2;
+    text-align: center;
+  }
+
+  #hero .scroll-indicator .scroll-text {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    opacity: 0.85;
+  }
+
+  #hero .scroll-indicator .scroll-arrow i {
+    font-size: 18px;
+  }
+
+}
+
