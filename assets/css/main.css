@@ -4676,7 +4676,7 @@ body.mobile-nav-active .navmenu ul,
   .hero .hero-video { display: none; }
 
   .hero .hero-overlay {
-    background: rgba(0, 0, 0, 0.60);
+    background: rgba(0, 0, 0, 0.70);
   }
 
 /* Optional: if user has reduced motion — prefer photo everywhere */
