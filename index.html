@@ -1931,29 +1931,20 @@ s0.parentNode.insertBefore(s1,s0);
     shown = true;
   }
 
-  // 1) Показ после скролла 30% страницы (fallback — всегда работает)
-  window.addEventListener('scroll', function () {
-    const scrollPercent =
-      (window.scrollY + window.innerHeight) / document.body.scrollHeight;
+  function onScroll() {
+    // fallback: не в hero
+    if (window.scrollY > 120) showBanner();
 
-    if (scrollPercent > 0.3) {
-      showBanner();
+    // если есть секция About — показываем при достижении
+    if (aboutSection) {
+      const aboutTop = aboutSection.getBoundingClientRect().top;
+      if (aboutTop <= window.innerHeight * 0.7) showBanner();
     }
-  });
 
-  // 2) Показ при достижении секции About (если есть)
-  if (aboutSection && 'IntersectionObserver' in window) {
-    const observer = new IntersectionObserver(
-      function (entries) {
-        if (entries[0].isIntersecting) {
-          showBanner();
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.3 }
-    );
-    observer.observe(aboutSection);
+    if (shown) window.removeEventListener('scroll', onScroll);
   }
+
+  window.addEventListener('scroll', onScroll);
 
   acceptBtn.addEventListener('click', function (e) {
     e.preventDefault();
