@@ -1921,27 +1921,39 @@ s0.parentNode.insertBefore(s1,s0);
   const rejectBtn = document.getElementById('cookie-reject');
   const aboutSection = document.getElementById('about');
 
-  if (!banner || !acceptBtn || !rejectBtn || !aboutSection) return;
+  if (!banner || !acceptBtn || !rejectBtn) return;
 
-  let bannerShown = false;
+  let shown = false;
 
-  // показываем баннер только после скролла до About
-  function checkScroll() {
-    const aboutTop = aboutSection.getBoundingClientRect().top;
-    const windowHeight = window.innerHeight;
-
-    if (
-      !bannerShown &&
-      !localStorage.getItem('cookieConsent') &&
-      aboutTop <= windowHeight * 0.6
-    ) {
-      banner.style.display = 'block';
-      bannerShown = true;
-      window.removeEventListener('scroll', checkScroll);
-    }
+  function showBanner() {
+    if (shown || localStorage.getItem('cookieConsent')) return;
+    banner.style.display = 'block';
+    shown = true;
   }
 
-  window.addEventListener('scroll', checkScroll);
+  // 1) Показ после скролла 30% страницы (fallback — всегда работает)
+  window.addEventListener('scroll', function () {
+    const scrollPercent =
+      (window.scrollY + window.innerHeight) / document.body.scrollHeight;
+
+    if (scrollPercent > 0.3) {
+      showBanner();
+    }
+  });
+
+  // 2) Показ при достижении секции About (если есть)
+  if (aboutSection && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      function (entries) {
+        if (entries[0].isIntersecting) {
+          showBanner();
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(aboutSection);
+  }
 
   acceptBtn.addEventListener('click', function (e) {
     e.preventDefault();
