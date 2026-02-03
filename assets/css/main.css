@@ -4674,16 +4674,14 @@ body.mobile-nav-active .navmenu ul,
 @media (max-width: 991px) {
   .hero .hero-photo { display: block; }
   .hero .hero-video { display: none; }
-}
+
+  .hero .hero-overlay {
+    background: rgba(0, 0, 0, 0.60);
+  }
 
 /* Optional: if user has reduced motion — prefer photo everywhere */
 @media (prefers-reduced-motion: reduce) {
   .hero .hero-photo { display: block; }
   .hero .hero-video { display: none; }
-}
-
-@media (max-width: 991px) {
-  .hero .hero-overlay {
-    background: rgba(0, 0, 0, 0.40);
   }
 }
