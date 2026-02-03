@@ -1919,19 +1919,38 @@ s0.parentNode.insertBefore(s1,s0);
   const banner = document.getElementById('cookie-banner');
   const acceptBtn = document.getElementById('cookie-accept');
   const rejectBtn = document.getElementById('cookie-reject');
+  const aboutSection = document.getElementById('about');
 
-  if (!banner || !acceptBtn || !rejectBtn) return;
+  if (!banner || !acceptBtn || !rejectBtn || !aboutSection) return;
 
-  if (!localStorage.getItem('cookieConsent')) {
-    banner.style.display = 'block';
+  let bannerShown = false;
+
+  // показываем баннер только после скролла до About
+  function checkScroll() {
+    const aboutTop = aboutSection.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+
+    if (
+      !bannerShown &&
+      !localStorage.getItem('cookieConsent') &&
+      aboutTop <= windowHeight * 0.6
+    ) {
+      banner.style.display = 'block';
+      bannerShown = true;
+      window.removeEventListener('scroll', checkScroll);
+    }
   }
 
-  acceptBtn.addEventListener('click', function () {
+  window.addEventListener('scroll', checkScroll);
+
+  acceptBtn.addEventListener('click', function (e) {
+    e.preventDefault();
     localStorage.setItem('cookieConsent', 'accepted');
     banner.style.display = 'none';
   });
 
-  rejectBtn.addEventListener('click', function () {
+  rejectBtn.addEventListener('click', function (e) {
+    e.preventDefault();
     localStorage.setItem('cookieConsent', 'rejected');
     banner.style.display = 'none';
   });
