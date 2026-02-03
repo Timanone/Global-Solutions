@@ -198,7 +198,11 @@ function toggleScrolled() {
   }
 
   window.addEventListener('load', navmenulinks.length ? navmenuScrollspy : () => {});
-  document.addEventListener('scroll', navmenulinks.length ? navmenuScrollspy : () => {});
+ document.addEventListener(
+  'scroll',
+  navmenulinks.length ? navmenuScrollspy : () => {},
+  { passive: true }
+);
 
 /**
  * Cross-page hash scroll fix
