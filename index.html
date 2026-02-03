@@ -86,20 +86,26 @@
   <!-- Hero Section -->
   <section id="hero" class="hero section dark-background">
 
-    <div class="hero-background">
-      
-      <video autoplay muted loop playsinline preload="metadata">
-        <source src="assets/img/restaurant/video-4.mp4" type="video/mp4">
-      </video>
+<div class="hero-background">
 
-              <!-- Mobile image -->
-  <div class="hero-photo.png"></div>
+  <!-- DESKTOP / TABLET video background -->
+  <video class="hero-video" autoplay muted loop playsinline preload="metadata">
+    <source src="assets/img/restaurant/video-4.mp4" type="video/mp4">
+  </video>
 
-  <div class="overlay"></div>
+  <!-- MOBILE image background -->
+  <img
+    class="hero-photo"
+    src="assets/img/restaurant/hero-photo.png"
+    alt="Global Solutions hero background"
+    loading="eager"
+    decoding="async"
+  />
+
+  <!-- overlay -->
+  <div class="hero-overlay" aria-hidden="true"></div>
+
 </div>
-
-      <div class="overlay"></div>
-    </div>
 
     <div class="container hero-content">
       <div class="row">
