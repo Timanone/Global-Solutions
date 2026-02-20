@@ -1986,6 +1986,57 @@ s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
 
+<script>
+  (function () {
+    function isInquiryTarget(el) {
+      if (!el) return false;
+
+      // Если клик по дочернему элементу внутри ссылки/кнопки — поднимаемся вверх
+      const a = el.closest('a');
+      const btn = el.closest('button');
+
+      // Вариант 1: это ссылка <a href="#submit-inquiry">
+      if (a && a.getAttribute('href')) {
+        const href = a.getAttribute('href').trim();
+        if (href === '#submit-inquiry' || href.endsWith('/#submit-inquiry') || href.includes('#submit-inquiry')) {
+          return a;
+        }
+      }
+
+      // Вариант 2: это кнопка, которая скроллит через JS/scrollTo — ловим по data-атрибутам/классам при необходимости
+      // Пока не трогаем: если у тебя всё через <a>, этого достаточно.
+
+      // Если клик по кнопке внутри ссылки — вернём ссылку
+      if (btn) {
+        const parentA = btn.closest('a');
+        if (parentA && parentA.getAttribute('href') && parentA.getAttribute('href').includes('#submit-inquiry')) {
+          return parentA;
+        }
+      }
+
+      return false;
+    }
+
+    document.addEventListener('click', function (e) {
+      const target = isInquiryTarget(e.target);
+      if (!target) return;
+
+      const text = (target.innerText || target.textContent || '').trim().slice(0, 80);
+      const id = target.id || '';
+      const cls = (target.className && typeof target.className === 'string') ? target.className : '';
+
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'cta_click', {
+          cta_text: text,
+          cta_id: id,
+          cta_class: cls,
+          page_location: window.location.href
+        });
+      }
+    }, true);
+  })();
+</script>
+                  
 </body>
 
 </html>
